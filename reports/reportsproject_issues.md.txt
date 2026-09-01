@@ -1,0 +1,54 @@
+# Project Issue List
+
+## Data
+- [ ] Download Amazon Fine Food Reviews dataset
+- [ ] Verify Reviews.csv structure
+- [ ] Check missing values
+- [ ] Check duplicate reviews
+- [ ] Validate ratings and helpfulness fields
+
+## EDA
+- [ ] Analyze rating distribution
+- [ ] Analyze review volume over time
+- [ ] Analyze review length
+- [ ] Analyze helpfulness
+- [ ] Identify initial business insights
+
+## NLP
+- [ ] Build text preprocessing pipeline
+- [ ] Define sentiment labels
+- [ ] Analyze positive/negative n-grams
+
+## Machine Learning
+- [ ] Create train/test split
+- [ ] Build TF-IDF features
+- [ ] Train baseline models
+- [ ] Compare model performance
+- [ ] Perform error analysis
+
+## Embeddings & Retrieval
+- [ ] Generate review embeddings
+- [ ] Build vector index
+- [ ] Implement semantic search
+- [ ] Evaluate retrieval quality
+
+## Dashboard
+- [ ] Build Streamlit dashboard
+- [ ] Add KPI cards
+- [ ] Add rating/sentiment trends
+- [ ] Add review search/examples
+
+## AI Review Analyst
+- [ ] Define read-only agent scope
+- [ ] Implement search tool
+- [ ] Implement KPI tool
+- [ ] Implement sentiment prediction tool
+- [ ] Add guardrails
+
+## Final Submission
+- [ ] Final report
+- [ ] Final presentation
+- [ ] Dashboard screenshots
+- [ ] Model card
+- [ ] Reproducibility check
+- [ ] Final demo
