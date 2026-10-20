@@ -1,0 +1,121 @@
+{
+  "source_files": [
+    "reports/retrieval_test_log.md",
+    "models/faiss_index_with_ids.bin",
+    "models/faiss_universal_160k.bin"
+  ],
+  "generated_at": "2026-10-17T14:20:17.156291+00:00",
+  "split": "semantic search index sample",
+  "n": 25,
+  "sample_queries": [
+    {
+      "query": "gluten free pizza crust",
+      "target": "Amazon Food (Celiac/Dietary)",
+      "latency_ms": 4.8,
+      "results": [
+        {
+          "id": 303729,
+          "score": 1,
+          "similarity": 0.914,
+          "summary": "Disgusting pizza crust",
+          "text": "bunch of gluten-free flours... pizza crust... Disgusting pizza crust.",
+          "sentiment": "negative",
+          "relevance": "Relevant"
+        },
+        {
+          "id": 49697,
+          "score": 2,
+          "similarity": 0.807,
+          "summary": "Did not taste like pizza",
+          "text": "We have a gluten free house... Bob Red Mills pizza Crust. This just didn't taste like pizza...",
+          "sentiment": "negative",
+          "relevance": "Relevant"
+        },
+        {
+          "id": 216945,
+          "score": 5,
+          "similarity": 0.78,
+          "summary": "My Favorite GF Pizza Crust",
+          "text": "My Favorite GF Pizza Crust Mix... Bob's Red Mill, Pamela's... best GF pizza from Z-Pizza...",
+          "sentiment": "positive",
+          "relevance": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "arrived stale and damaged packaging",
+      "target": "Amazon Food (Freshness/Transit)",
+      "latency_ms": 5.1,
+      "results": [
+        {
+          "id": 276238,
+          "score": 2,
+          "similarity": 0.67,
+          "summary": "Boxes were almost inedible",
+          "text": "This must have been sitting in a warehouse forever, because two of the boxes were almost inedible...",
+          "sentiment": "negative",
+          "relevance": "Relevant"
+        },
+        {
+          "id": 182626,
+          "score": 1,
+          "similarity": 0.626,
+          "summary": "Packaging really bad",
+          "text": "Amazon's packaging really bad... arrived torn all to pieces and product damaged...",
+          "sentiment": "negative",
+          "relevance": "Relevant"
+        },
+        {
+          "id": 99312,
+          "score": 5,
+          "similarity": 0.617,
+          "summary": "Arrived safely and undamaged",
+          "text": "Package arrived safely and undamaged. I was worried it would be crushed, but it was well packaged...",
+          "sentiment": "positive",
+          "relevance": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "phone battery drains rapidly overnight",
+      "target": "Flipkart Retail (Electronics)",
+      "latency_ms": 5.4,
+      "results": [
+        {
+          "id": 1000045,
+          "score": 1,
+          "similarity": 0.51,
+          "summary": "Battery life is defective",
+          "text": "battery life is defective, money wasted [very bad] fraud hai seller fraud",
+          "sentiment": "negative",
+          "relevance": "Relevant"
+        },
+        {
+          "id": 1000102,
+          "score": 1,
+          "similarity": 0.481,
+          "summary": "Battery drain issue",
+          "text": "phone gets heated up quickly and battery dies within 4 hours",
+          "sentiment": "negative",
+          "relevance": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "ambiguous short query x",
+      "target": "Recorded Failure Edge Case",
+      "latency_ms": 4.2,
+      "results": [
+        {
+          "id": 12,
+          "score": 3,
+          "similarity": 0.182,
+          "summary": "Uncertain semantic match",
+          "text": "No clear intent match found for single character search query.",
+          "sentiment": "neutral",
+          "relevance": "Irrelevant"
+        }
+      ]
+    }
+  ]
+}

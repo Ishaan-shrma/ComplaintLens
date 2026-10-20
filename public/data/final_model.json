@@ -1,0 +1,61 @@
+{
+  "source_files": [
+    "notebooks/artifacts/distilbert281k_test_logits.npy",
+    "notebooks/artifacts/test_labels.npy",
+    "notebooks/artifacts/final_test_results.json",
+    "notebooks/artifacts/temperature_T.npy"
+  ],
+  "generated_at": "2026-10-17T14:20:17.156291+00:00",
+  "split": "held-out test, n = 72,846",
+  "n": 72846,
+  "model_name": "distilbert-base-uncased",
+  "architecture": "DistilBERT (6 Transformer Layers, 66M Parameters)",
+  "training_samples": 281271,
+  "test_samples": 72846,
+  "accuracy": 0.9739,
+  "macro_f1": 0.9504,
+  "roc_auc": 0.993,
+  "neg_precision": 0.9186,
+  "neg_recall": 0.9138,
+  "neg_f1": 0.9162,
+  "pos_precision": 0.9841,
+  "pos_recall": 0.985,
+  "pos_f1": 0.9845,
+  "confusion_matrix": {
+    "fp": 980,
+    "fn": 921,
+    "tn": 10392,
+    "tp": 60553
+  },
+  "miss_rate_fp_pct": 8.62,
+  "false_alarm_fn_pct": 1.5,
+  "val_macro_f1": 0.9559,
+  "val_loss_by_epoch": [
+    0.0771,
+    0.0876
+  ],
+  "calibrated_temp_T": 1.654,
+  "ece_raw": 0.0201,
+  "ece_calibrated": 0.0094,
+  "brier_raw": 0.0229,
+  "brier_calibrated": 0.0208,
+  "hyperparameters": {
+    "learning_rate": "2e-5",
+    "batch_size": 16,
+    "epochs": 2,
+    "weight_decay": 0.01,
+    "max_length": 128,
+    "fp16": true,
+    "seed": 42
+  },
+  "metrics": {
+    "accuracy": "97.39%",
+    "macro_f1": "95.04%",
+    "neg_recall": "91.38%",
+    "neg_precision": "91.86%",
+    "temperature": 1.654,
+    "ece_raw": "4.18%",
+    "ece_calibrated": "0.32%",
+    "roc_auc": 0.993
+  }
+}

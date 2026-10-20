@@ -1,0 +1,51 @@
+{
+  "source_files": [
+    "reports/recorded_inference_benchmarks.json",
+    "notebooks/artifacts/final_test_results.json"
+  ],
+  "generated_at": "2026-10-17T13:00:00.000Z",
+  "examples": [
+    {
+      "title": "Severe Packaging Failure & Stale Food",
+      "input_text": "The box arrived completely crushed and two bags were torn open. Everything inside was stale and completely inedible. Absolute waste of money.",
+      "overall": {
+        "predicted_sentiment": "Negative",
+        "calibrated_probability": 0.9842,
+        "negative_probability": 0.9842,
+        "positive_probability": 0.0158,
+        "complaint_alert": true,
+        "measured_latency_ms": 18.4,
+        "device": "cuda",
+        "model_name": "deberta_v3_omni"
+      }
+    },
+    {
+      "title": "Delighted with Gluten-Free Pizza Crust",
+      "input_text": "This is hands down the best gluten-free pizza crust I have ever baked. Crispy exterior, wonderful chew, and absolutely zero chemical aftertaste.",
+      "overall": {
+        "predicted_sentiment": "Positive",
+        "calibrated_probability": 0.9912,
+        "negative_probability": 0.0088,
+        "positive_probability": 0.9912,
+        "complaint_alert": false,
+        "measured_latency_ms": 19.1,
+        "device": "cuda",
+        "model_name": "deberta_v3_omni"
+      }
+    },
+    {
+      "title": "Contrastive Neutral/Mixed Feedback",
+      "input_text": "The coffee has a wonderfully rich dark roast aroma, but the k-cup pods repeatedly jammed and leaked all over my counter brewer.",
+      "overall": {
+        "predicted_sentiment": "Negative",
+        "calibrated_probability": 0.7421,
+        "negative_probability": 0.7421,
+        "positive_probability": 0.2579,
+        "complaint_alert": true,
+        "measured_latency_ms": 21.6,
+        "device": "cuda",
+        "model_name": "deberta_v3_omni"
+      }
+    }
+  ]
+}

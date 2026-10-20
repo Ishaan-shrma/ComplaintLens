@@ -1,0 +1,52 @@
+{
+  "source_files": [
+    "reports/retrieval_test_log.md",
+    "notebooks/04_embeddings_retrieval.ipynb"
+  ],
+  "generated_at": "2026-10-17T14:20:17.156291+00:00",
+  "split": "indexed sample, n = 100,000",
+  "n": 100000,
+  "embedding_model": "all-MiniLM-L6-v2",
+  "dimension": 384,
+  "index_type": "FAISS IndexFlatIP (Cosine Similarity via Normalized Inner Product)",
+  "mean_precision_at_5": 1.0,
+  "audited_queries_count": 5,
+  "total_results_audited": 25,
+  "queries": [
+    {
+      "query": "gluten free pizza crust",
+      "p_at_5": 1.0,
+      "retrieved_n": 5,
+      "relevant_n": 5,
+      "target_intent": "Gluten-free dietary pizza dough"
+    },
+    {
+      "query": "arrived stale and damaged packaging",
+      "p_at_5": 1.0,
+      "retrieved_n": 5,
+      "relevant_n": 5,
+      "target_intent": "Packaging defects & freshness complaints"
+    },
+    {
+      "query": "way too sweet and sugary",
+      "p_at_5": 1.0,
+      "retrieved_n": 5,
+      "relevant_n": 5,
+      "target_intent": "Excessive sugar taste grievances"
+    },
+    {
+      "query": "my dog loved these treats",
+      "p_at_5": 1.0,
+      "retrieved_n": 5,
+      "relevant_n": 5,
+      "target_intent": "Pet food Canine treat satisfaction"
+    },
+    {
+      "query": "perfect for k-cup keurig brewer",
+      "p_at_5": 1.0,
+      "retrieved_n": 5,
+      "relevant_n": 5,
+      "target_intent": "Single-serve pod brewer compatibility"
+    }
+  ]
+}

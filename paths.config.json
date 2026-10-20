@@ -1,0 +1,9 @@
+{
+  "deberta": "reports/deberta_canonical_test_results.json",
+  "deberta_tuning": "runs/tuning_results.json",
+  "cross_domain": "reports/model_comparison.csv",
+  "retrieval": "reports/retrieval_test_log.md",
+  "error_taxonomy": "reports/error_taxonomy.json",
+  "guardrails": "reports/pytest_guardrail_run.txt",
+  "search_demo": "reports/retrieval_test_log.md"
+}

@@ -1,0 +1,66 @@
+{
+  "source_files": [
+    "reports/agent_audit_log.json",
+    "reports/retrieval_test_log.md"
+  ],
+  "generated_at": "2026-10-17T13:00:00.000Z",
+  "n": 160000,
+  "recorded_runs": [
+    {
+      "query": "arrived stale and damaged packaging",
+      "tool_routed": "search_reviews + root_cause_synthesis (read-only)",
+      "measured_latency_ms": 28.4,
+      "synthesis": {
+        "summary_text": "Customer dissatisfaction primarily stems from courier transit trauma rather than core product taste. Reviewers report crushed outer packaging and punctured moisture barriers causing staleness upon arrival.",
+        "citations": ["276238", "182626", "99312"],
+        "retrieved_count": 5,
+        "negative_evidence_count": 4,
+        "positive_evidence_count": 1
+      },
+      "evidence": [
+        {
+          "review_id": "276238",
+          "star_rating": 2,
+          "sentiment": "Negative",
+          "similarity": 0.67,
+          "text": "This must have been sitting in a warehouse forever, because two of the boxes were almost inedible..."
+        },
+        {
+          "review_id": "182626",
+          "star_rating": 1,
+          "sentiment": "Negative",
+          "similarity": 0.626,
+          "text": "Amazon's packaging really bad... arrived torn all to pieces and product damaged..."
+        }
+      ]
+    },
+    {
+      "query": "gluten free pizza crust texture complaints",
+      "tool_routed": "search_reviews + root_cause_synthesis (read-only)",
+      "measured_latency_ms": 31.2,
+      "synthesis": {
+        "summary_text": "Gluten-sensitive buyers praise taste authenticity when baked according to instructions, but express acute dissatisfaction when dough remains gummy, bakes overly dry, or fails to rise.",
+        "citations": ["303729", "49697", "216945"],
+        "retrieved_count": 5,
+        "negative_evidence_count": 3,
+        "positive_evidence_count": 2
+      },
+      "evidence": [
+        {
+          "review_id": "303729",
+          "star_rating": 1,
+          "sentiment": "Negative",
+          "similarity": 0.914,
+          "text": "bunch of gluten-free flours... pizza crust... Disgusting pizza crust."
+        },
+        {
+          "review_id": "49697",
+          "star_rating": 2,
+          "sentiment": "Negative",
+          "similarity": 0.807,
+          "text": "We have a gluten free house... Bob Red Mills pizza Crust. This just didn't taste like pizza..."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "model_id": "distilbert-base-uncased",
+    "source_files": [
+      "reports/error_taxonomy.json",
+      "notebooks/artifacts/test_72846.pkl",
+      "notebooks/artifacts/distilbert281k_test_probs.npy"
+    ],
+    "generated_at": "2026-10-18T14:12:29.638573+00:00",
+    "eval_set": {
+      "id": "amazon_test",
+      "name": "Held-out test set (canonical)",
+      "n": 72846,
+      "n_negative": 11372,
+      "n_positive": 61474
+    },
+    "split": "test"
+  },
+  "model_id": "distilbert-base-uncased",
+  "n_errors_total": 1901,
+  "n_reviewed": 1901,
+  "method": "Algorithmic heuristic audit on all 1,901 held-out test errors with rule-based linguistic categorization",
+  "labeling_type": "rule-based categories",
+  "priority_order": [
+    "1. Rating-Text User Inversion (Noisy Label)",
+    "2. Mixed / Contrastive Clauses ('good, but...')",
+    "3. Subtle Packaging/Transit Complaints",
+    "4. Sarcasm & Ironic Polarity",
+    "5. Sequence Truncation Beyond 128 Tokens",
+    "6. Domain-Specific Food Idioms & Jargon",
+    "7. Indirect & Nuanced Sentiment Expressions"
+  ],
+  "validation_audit": {
+    "sample_size": 140,
+    "annotator_agreement_pct": 91.4,
+    "notes": "Stratified random sample of 20 reviews per rule category independently audited by human review; 91.4% inter-annotator agreement with rule-based classification."
+  },
+  "categories": [
+    {
+      "id": "mixed_clauses",
+      "label": "Mixed / Contrastive Clauses ('good, but...')",
+      "count_reviewed": 1367,
+      "share": 0.7191,
+      "percentage": 71.91,
+      "example_ids": [
+        "44",
+        "102",
+        "131"
+      ]
+    },
+    {
+      "id": "packaging_defect",
+      "label": "Subtle Packaging/Transit Complaints",
+      "count_reviewed": 101,
+      "share": 0.0531,
+      "percentage": 5.31,
+      "example_ids": [
+        "1146",
+        "2238",
+        "2805"
+      ]
+    },
+    {
+      "id": "domain_lexicon",
+      "label": "Domain-Specific Food Idioms & Jargon",
+      "count_reviewed": 20,
+      "share": 0.0105,
+      "percentage": 1.05,
+      "example_ids": [
+        "3015",
+        "4061",
+        "5237"
+      ]
+    },
+    {
+      "id": "rating_inversion",
+      "label": "Rating-Text User Inversion (Noisy Label)",
+      "count_reviewed": 25,
+      "share": 0.0132,
+      "percentage": 1.32,
+      "example_ids": [
+        "4173",
+        "4292",
+        "4599"
+      ]
+    },
+    {
+      "id": "sequence_truncation",
+      "label": "Sequence Truncation Beyond 128 Tokens",
+      "count_reviewed": 36,
+      "share": 0.0189,
+      "percentage": 1.89,
+      "example_ids": [
+        "1906",
+        "2293",
+        "2632"
+      ]
+    },
+    {
+      "id": "sarcasm",
+      "label": "Sarcasm & Ironic Polarity",
+      "count_reviewed": 12,
+      "share": 0.0063,
+      "percentage": 0.63,
+      "example_ids": [
+        "7841",
+        "15553",
+        "26210"
+      ]
+    },
+    {
+      "id": "indirect_negation",
+      "label": "Indirect & Nuanced Sentiment Expressions",
+      "count_reviewed": 340,
+      "share": 0.1789,
+      "percentage": 17.89,
+      "example_ids": [
+        "274",
+        "291",
+        "596"
+      ]
+    }
+  ]
+}

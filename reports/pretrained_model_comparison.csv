@@ -1,0 +1,5 @@
+Model,Accuracy,Macro F1,Negative F1,Positive F1
+Linear SVM (TF-IDF),0.9542,0.9109,0.8487,0.973
+VADER (lexicon),0.8851,0.7413,0.5484,0.9342
+NLP Town BERT (zero-shot),0.7811,0.7164,0.5811,0.8518
+"DistilBERT (SST-2, zero-shot)",0.6782,0.6235,0.48,0.767

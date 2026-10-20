@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "model_id": "corpus",
+    "source_files": [
+      "data/processed/reviews_cleaned.csv",
+      "data/processed/omni_corpus.csv"
+    ],
+    "generated_at": "2026-10-18T21:30:18.885788+00:00",
+    "eval_set": {
+      "id": "omni_corpus",
+      "name": "Multi-Platform Omni Corpus",
+      "n": 453878,
+      "n_negative": 80867,
+      "n_positive": 335926
+    },
+    "split": "test"
+  },
+  "raw": 568454,
+  "duplicates_removed": 174562,
+  "invalid_removed": 2,
+  "clean": 393890,
+  "neutral_excluded": 29768,
+  "binary_pool": 364122,
+  "train": 281271,
+  "validation": 9997,
+  "test": 72846,
+  "total_omni_records": 453878,
+  "heldout_multidomain_records": 6000,
+  "grand_total_all_records": 459878,
+  "per_platform": [
+    {
+      "platform": "Amazon Fine Food",
+      "domain": "Consumer Food & Grocery",
+      "n": 393890,
+      "n_negative": 57103,
+      "n_positive": 307019,
+      "n_neutral": 29768,
+      "binary_class_split": {
+        "positive_pct": 84.32,
+        "negative_pct": 15.68
+      }
+    },
+    {
+      "platform": "Flipkart Retail (Synthetic Template Data)",
+      "domain": "Electronics & Gadgets (Template Generated)",
+      "n": 15000,
+      "n_negative": 3743,
+      "n_positive": 8990,
+      "n_neutral": 2267,
+      "binary_class_split": {
+        "positive_pct": 70.6,
+        "negative_pct": 29.4
+      }
+    },
+    {
+      "platform": "Yelp Dining",
+      "domain": "Hospitality & Local Dining",
+      "n": 25000,
+      "n_negative": 10015,
+      "n_positive": 9935,
+      "n_neutral": 5050,
+      "binary_class_split": {
+        "positive_pct": 49.8,
+        "negative_pct": 50.2
+      }
+    },
+    {
+      "platform": "IMDb Cinema",
+      "domain": "Film & Media Reviews",
+      "n": 19988,
+      "n_negative": 10006,
+      "n_positive": 9982,
+      "n_neutral": 0,
+      "binary_class_split": {
+        "positive_pct": 49.94,
+        "negative_pct": 50.06
+      }
+    }
+  ],
+  "sampling_notes": {
+    "corpus_totals_disclosure": "Total records in omni_corpus.csv: 453,878 (Amazon: 393,890, Flipkart: 15,000, Yelp: 25,000, IMDb: 19,988). The held-out multi-domain test set (omni_heldout_multidomain_test.csv) contains 6,000 separate records (2,000 each Yelp, IMDb, Flipkart; zero overlap with corpus). Total across both files is 459,878.",
+    "imdb_exact_n": "IMDb source had 25,000 train rows in HuggingFace. 2,000 were held out into omni_heldout_multidomain_test.csv, leaving 20,000 requested for omni_corpus.csv; exactly 12 whitespace/empty text rows were dropped during normalization, resulting in 19,988 records.",
+    "replay_buffer_partition": "Inside omni_corpus.csv, replay buffer consists of 15,957 Yelp rows, 16,068 IMDb rows, and 10,165 synthetic Flipkart rows. Held-out test rows sit in omni_heldout_multidomain_test.csv with zero training overlap.",
+    "flipkart_synthetic_disclosure": "Flipkart data (15,000 rows in corpus, 10,165 binary in training replay) was synthesized via combinatorial template fallbacks (_generate_synthetic_flipkart) when external servers were unreachable. Real-review multi-platform replay consists solely of Yelp (15,957) + IMDb (16,068) = 32,025 reviews (9.90% of training blend).",
+    "yelp_polarity_balance": "Yelp Dining sample reflects balanced polarity: 10,015 negative vs 9,935 positive (50.2% / 49.8% binary split), with 5,050 3-star neutral reviews separated.",
+    "corpus_sum_check": "393,890 (Amazon) + 15,000 (Flipkart) + 25,000 (Yelp) + 19,988 (IMDb) = exactly 453,878 records."
+  },
+  "star_counts": {
+    "1": 36302,
+    "2": 20801,
+    "3": 29768,
+    "4": 56086,
+    "5": 250933
+  },
+  "yearly_volume": [
+    {
+      "year": 2007,
+      "count": 19448,
+      "avg_rating": 4.28
+    },
+    {
+      "year": 2008,
+      "count": 28654,
+      "avg_rating": 4.25
+    },
+    {
+      "year": 2009,
+      "count": 43577,
+      "avg_rating": 4.22
+    },
+    {
+      "year": 2010,
+      "count": 65112,
+      "avg_rating": 4.19
+    },
+    {
+      "year": 2011,
+      "count": 105872,
+      "avg_rating": 4.16
+    },
+    {
+      "year": 2012,
+      "count": 128450,
+      "avg_rating": 4.14
+    }
+  ],
+  "source_citation": "data/processed/reviews_cleaned.csv & data/processed/omni_corpus.csv"
+}

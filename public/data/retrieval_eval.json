@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "model_id": "all-MiniLM-L6-v2",
+    "source_files": [
+      "reports/retrieval_test_log.md",
+      "notebooks/04_embeddings_retrieval.ipynb"
+    ],
+    "generated_at": "2026-10-18T21:30:18.899945+00:00",
+    "eval_set": {
+      "id": "indexed_sample",
+      "name": "FAISS IndexFlatIP Cosine Search",
+      "n": 159988,
+      "n_negative": 24500,
+      "n_positive": 135488
+    },
+    "split": "test"
+  },
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "dimension": 384,
+  "index_type": "faiss.IndexFlatIP (Cosine Similarity via L2 Normalization)",
+  "mean_latency_ms": 13.8,
+  "queries": [
+    {
+      "query": "gluten free pizza crust",
+      "measured_latency_ms": 12.4,
+      "top_k": [
+        {
+          "id": "303729",
+          "similarity": 0.914,
+          "relevance_mark": "Highly Relevant",
+          "notes": "Celiac pizza crust review, negative polarity"
+        },
+        {
+          "id": "49697",
+          "similarity": 0.807,
+          "relevance_mark": "Relevant",
+          "notes": "Taste comparison against Bob Red Mill"
+        },
+        {
+          "id": "216945",
+          "similarity": 0.78,
+          "relevance_mark": "Relevant",
+          "notes": "Positive brand recommendation"
+        }
+      ]
+    },
+    {
+      "query": "arrived stale and damaged packaging",
+      "measured_latency_ms": 13.1,
+      "top_k": [
+        {
+          "id": "276238",
+          "similarity": 0.67,
+          "relevance_mark": "Highly Relevant",
+          "notes": "Warehouse storage and transit defect"
+        },
+        {
+          "id": "182626",
+          "similarity": 0.626,
+          "relevance_mark": "Highly Relevant",
+          "notes": "Box arrived torn all to pieces"
+        },
+        {
+          "id": "99312",
+          "similarity": 0.617,
+          "relevance_mark": "Relevant",
+          "notes": "Positive delivery contrast example"
+        }
+      ]
+    },
+    {
+      "query": "phone battery drains rapidly overnight",
+      "measured_latency_ms": 14.2,
+      "top_k": [
+        {
+          "id": "1000045",
+          "similarity": 0.51,
+          "relevance_mark": "Highly Relevant",
+          "notes": "Flipkart battery defect complaint"
+        },
+        {
+          "id": "1000102",
+          "similarity": 0.481,
+          "relevance_mark": "Highly Relevant",
+          "notes": "Heating and fast drain complaint"
+        }
+      ]
+    },
+    {
+      "query": "ambiguous query x99",
+      "measured_latency_ms": 11.8,
+      "top_k": [
+        {
+          "id": "12",
+          "similarity": 0.182,
+          "relevance_mark": "Irrelevant",
+          "notes": "Recorded failure edge case: sub-threshold match"
+        }
+      ]
+    }
+  ]
+}

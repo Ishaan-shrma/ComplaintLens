@@ -1,0 +1,138 @@
+{
+  "meta": {
+    "model_id": "microsoft/deberta-v3-base",
+    "source_files": [
+      "reports/deberta_canonical_test_results.json"
+    ],
+    "generated_at": "2026-10-18T21:30:18.886453+00:00",
+    "eval_set": {
+      "id": "amazon_test",
+      "name": "Held-out test set (amazon_test)",
+      "n": 72846,
+      "n_negative": 11372,
+      "n_positive": 61474
+    },
+    "split": "test"
+  },
+  "model_id": "microsoft/deberta-v3-base",
+  "model_name": "DeBERTa-v3-Omni",
+  "definition": "Best on the held-out test set among the models compared here.",
+  "decision_rule": "Standard Argmax (Threshold = 0.5 probability)",
+  "parameter_counts": {
+    "backbone": 86000000,
+    "total": 184000000,
+    "description": "86M backbone parameters (about 184M in total including the 128K-token embedding matrix)"
+  },
+  "confusion_matrix": {
+    "tn": 10679,
+    "fp": 693,
+    "fn": 663,
+    "tp": 60811
+  },
+  "missed_complaints": 693,
+  "false_alarms": 663,
+  "accuracy": 0.9814,
+  "macro_f1": 0.9646,
+  "negative_recall": 0.9391,
+  "negative_precision": 0.9415,
+  "negative_f1": 0.9403,
+  "positive_recall": 0.9892,
+  "positive_precision": 0.9887,
+  "positive_f1": 0.989,
+  "roc_auc": 0.9957,
+  "training_mix_manifest": {
+    "total_train_n": 323461,
+    "amazon_primary_n": 281271,
+    "real_review_replay_n": 32025,
+    "synthetic_flipkart_replay_n": 10165,
+    "replay_sources": [
+      "Yelp Dining (Real)",
+      "IMDb Cinema (Real)",
+      "Flipkart Retail (Synthetic Template)"
+    ],
+    "training_blend": "9.90% real replay (32,025 Yelp/IMDb) + 3.14% synthetic Flipkart (10,165) + 86.96% primary Amazon (281,271)"
+  },
+  "headline_error_range": "1,356\u20131,382 errors (-27.30% to -28.67% error reduction; about 1,360, \u00b15 from batching)",
+  "error_comparison_vs_distilbert": {
+    "decision_rule": "Both models evaluated at standard argmax (threshold = 0.5)",
+    "headline_range": "1,356\u20131,382 errors (-27.30% to -28.67% error reduction)",
+    "forking_path_disclosure": "Both raw and normalized pipelines were evaluated. Because the model trained on normalized text, normalized inference represents the matched pipeline, but both variants are reported transparently.",
+    "distilbert_missed_complaints_fp": 980,
+    "deberta_missed_complaints_fp": 693,
+    "delta_missed_complaints_pct": -29.29,
+    "distilbert_false_alarms_fn": 921,
+    "deberta_false_alarms_fn": 663,
+    "delta_false_alarms_pct": -28.01,
+    "distilbert_total_errors": 1901,
+    "deberta_total_errors": 1356,
+    "delta_total_errors_pct": -28.67,
+    "variants": {
+      "normalized_static_padding": {
+        "errors": 1356,
+        "fp": 693,
+        "fn": 663,
+        "reduction_pct": -28.67,
+        "note": "Headline match to static training length"
+      },
+      "normalized_dynamic_batching": {
+        "errors": 1361,
+        "fp": 695,
+        "fn": 666,
+        "reduction_pct": -28.41,
+        "mcnemar_chi2": 217.46,
+        "bootstrap_95_ci": "[25.11%, 31.57%]"
+      },
+      "raw_unnormalized": {
+        "errors": 1382,
+        "fp": 662,
+        "fn": 720,
+        "reduction_pct": -27.3,
+        "mcnemar_chi2": 199.2,
+        "bootstrap_95_ci": "[23.97%, 30.51%]"
+      }
+    },
+    "significance_and_bounds": "McNemar chi2 = 217.46 (p < 1e-16); 10,000-sample bootstrap 95% CI: [25.11%, 31.57%]. Raw text string errors = 1,382 (reduction = -27.30%, 95% CI: [23.97%, 30.51%])."
+  },
+  "per_platform_results": [
+    {
+      "platform": "Amazon Fine Food",
+      "domain": "Grocery",
+      "in_training_mix": true,
+      "training_role": "Primary Training (87.0%, 281,271 rows)",
+      "n": 72846,
+      "accuracy": 0.9814,
+      "macro_f1": 0.9646,
+      "negative_recall": 0.9391
+    },
+    {
+      "platform": "Yelp Dining",
+      "domain": "Hospitality",
+      "in_training_mix": true,
+      "training_role": "Omni Replay Buffer (15,957 sampled rows)",
+      "n": 1616,
+      "accuracy": 0.9734,
+      "macro_f1": 0.9734,
+      "negative_recall": 0.969
+    },
+    {
+      "platform": "IMDb Cinema",
+      "domain": "Media",
+      "in_training_mix": true,
+      "training_role": "Omni Replay Buffer (16,068 sampled rows)",
+      "n": 2000,
+      "accuracy": 0.9225,
+      "macro_f1": 0.9225,
+      "negative_recall": 0.9214
+    },
+    {
+      "platform": "Flipkart Retail (Synthetic Template Data)",
+      "domain": "Electronics (Synthetic)",
+      "in_training_mix": true,
+      "training_role": "Synthetic Replay Buffer (10,165 sampled rows)",
+      "n": 1717,
+      "accuracy": 1.0,
+      "macro_f1": 1.0,
+      "negative_recall": 1.0
+    }
+  ]
+}

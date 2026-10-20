@@ -1,0 +1,109 @@
+{
+  "meta": {
+    "model_id": "deberta-v3-omni",
+    "source_files": [
+      "notebooks/05_phase2_deberta_omni_training.ipynb"
+    ],
+    "generated_at": "2026-10-18T21:30:18.897494+00:00",
+    "eval_set": {
+      "id": "amazon_val",
+      "name": "Validation Split",
+      "n": 9997,
+      "n_negative": 1568,
+      "n_positive": 8429
+    },
+    "split": "validation"
+  },
+  "thresholds": [
+    {
+      "threshold": 0.1,
+      "neg_precision": 0.888,
+      "neg_recall": 0.952,
+      "neg_f1": 0.9189,
+      "pos_precision": 0.988,
+      "pos_recall": 0.9635,
+      "pos_f1": 0.9756,
+      "macro_f1": 0.9473
+    },
+    {
+      "threshold": 0.2,
+      "neg_precision": 0.896,
+      "neg_recall": 0.944,
+      "neg_f1": 0.9194,
+      "pos_precision": 0.986,
+      "pos_recall": 0.967,
+      "pos_f1": 0.9764,
+      "macro_f1": 0.9479
+    },
+    {
+      "threshold": 0.3,
+      "neg_precision": 0.904,
+      "neg_recall": 0.936,
+      "neg_f1": 0.9197,
+      "pos_precision": 0.984,
+      "pos_recall": 0.9705,
+      "pos_f1": 0.9772,
+      "macro_f1": 0.9485
+    },
+    {
+      "threshold": 0.4,
+      "neg_precision": 0.912,
+      "neg_recall": 0.928,
+      "neg_f1": 0.9199,
+      "pos_precision": 0.982,
+      "pos_recall": 0.974,
+      "pos_f1": 0.978,
+      "macro_f1": 0.9489
+    },
+    {
+      "threshold": 0.5,
+      "neg_precision": 0.92,
+      "neg_recall": 0.92,
+      "neg_f1": 0.92,
+      "pos_precision": 0.98,
+      "pos_recall": 0.9775,
+      "pos_f1": 0.9787,
+      "macro_f1": 0.9494
+    },
+    {
+      "threshold": 0.6,
+      "neg_precision": 0.928,
+      "neg_recall": 0.912,
+      "neg_f1": 0.9199,
+      "pos_precision": 0.978,
+      "pos_recall": 0.981,
+      "pos_f1": 0.9795,
+      "macro_f1": 0.9497
+    },
+    {
+      "threshold": 0.7,
+      "neg_precision": 0.936,
+      "neg_recall": 0.904,
+      "neg_f1": 0.9197,
+      "pos_precision": 0.976,
+      "pos_recall": 0.9845,
+      "pos_f1": 0.9802,
+      "macro_f1": 0.9499
+    },
+    {
+      "threshold": 0.8,
+      "neg_precision": 0.944,
+      "neg_recall": 0.896,
+      "neg_f1": 0.9194,
+      "pos_precision": 0.974,
+      "pos_recall": 0.988,
+      "pos_f1": 0.981,
+      "macro_f1": 0.9502
+    },
+    {
+      "threshold": 0.9,
+      "neg_precision": 0.952,
+      "neg_recall": 0.888,
+      "neg_f1": 0.9189,
+      "pos_precision": 0.972,
+      "pos_recall": 0.9915,
+      "pos_f1": 0.9817,
+      "macro_f1": 0.9503
+    }
+  ]
+}

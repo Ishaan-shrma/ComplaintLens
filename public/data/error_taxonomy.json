@@ -1,0 +1,371 @@
+{
+  "meta": {
+    "model_id": "deberta-v3-omni",
+    "display_name": "DeBERTa-v3-Omni (#1 Champion)",
+    "champion_definition": "Best on the held-out test set among the models compared here.",
+    "eval_set_id": "amazon_test",
+    "split": "test",
+    "n": 72846,
+    "eval_set": {
+      "id": "amazon_test",
+      "name": "Held-out test set (canonical)",
+      "n": 72846,
+      "n_negative": 11372,
+      "n_positive": 61474
+    },
+    "inference_config": "raw text, argmax",
+    "source_files": [
+      "reports/taxonomy_deberta.csv",
+      "reports/taxonomy_distilbert.csv",
+      "reports/taxonomy_full_audit_deberta.csv",
+      "reports/test_predictions_per_row.csv"
+    ],
+    "provenance": {
+      "tagger_script": "scripts/compute_taxonomy_deberta.py",
+      "tagger_version": "1.0.0",
+      "priority_order": [
+        "1. Rating-Proxy Inversion (Label Noise)",
+        "2. Mixed / Contrastive Clauses ('good, but...')",
+        "3. Subtle Packaging/Transit Complaints",
+        "4. Sarcasm & Ironic Polarity",
+        "5. Sequence Truncation Beyond 128 Tokens",
+        "6. Domain-Specific Food Idioms & Jargon",
+        "7. Indirect & Nuanced Sentiment (Residual)"
+      ]
+    }
+  },
+  "model_id": "deberta-v3-omni",
+  "display_name": "DeBERTa-v3-Omni (#1 Champion)",
+  "champion_definition": "Best on the held-out test set among the models compared here.",
+  "eval_set_id": "amazon_test",
+  "split": "test",
+  "n": 72846,
+  "inference_config": "raw text, argmax",
+  "n_errors_total": 1382,
+  "n_tagged": 1382,
+  "n_reviewed": 1382,
+  "labeling_type": "rule-based categories",
+  "disclosure": "Rules were written after inspecting DistilBERT test errors (adaptive reuse of the test set). No manual validation was performed. Counts are assigned after earlier rules claim matching reviews (priority order).",
+  "chart_title": "Misclassification Distribution by Rule-Based Category",
+  "chart_subtitle": "Dual-model comparison of discrete error counts. Indigo: DeBERTa-v3-Omni (n = 1,382 errors, primary); Grey: DistilBERT 281k (n = 1,901 errors, comparison).",
+  "chart_primary_legend": "DeBERTa-v3-Omni (Primary, n = 1,382)",
+  "chart_comparison_legend": "DistilBERT 281k (Comparison, n = 1,901)",
+  "chart_footer_note": "Card chip n = 1,382 reflects primary DeBERTa error population. Grey bars reflect DistilBERT errors (n = 1,901).",
+  "categories": [
+    {
+      "id": "mixed_clauses",
+      "label": "Mixed / Contrastive Clauses ('good, but...')",
+      "description": "Reviews containing contrasting conjunctions (but, however, although, though, yet, etc.). The rule is broad and also applies to many correctly classified reviews.",
+      "count": 1001,
+      "count_tagged": 1001,
+      "count_reviewed": 1001,
+      "share": 0.7243,
+      "percentage": 72.43,
+      "total_reviews": 35040,
+      "error_rate": 0.0286,
+      "error_rate_pct": 2.86,
+      "distilbert_count": 1367,
+      "distilbert_share": 0.7191,
+      "distilbert_percentage": 71.91,
+      "distilbert_error_rate_pct": 3.9,
+      "error_reduction_count": 366,
+      "comparative_note": "DeBERTa has 1,001 errors against 1,367 for DistilBERT in this category (raw text, amazon_test, n = 72,846). Overall test errors fell from 1,901 to 1,382 (-27.3%); this category: -26.8% (-366 errors). Not an ablation; model differences are bundled.",
+      "example_ids": [
+        "265",
+        "594",
+        "1011"
+      ]
+    },
+    {
+      "id": "indirect_negation",
+      "label": "Indirect & Nuanced Sentiment (Residual)",
+      "description": "Subtle dissatisfaction expressed through nuance, qualified statements, or absence of overt negation keywords.",
+      "count": 247,
+      "count_tagged": 247,
+      "count_reviewed": 247,
+      "share": 0.1787,
+      "percentage": 17.87,
+      "total_reviews": 29284,
+      "error_rate": 0.0084,
+      "error_rate_pct": 0.84,
+      "distilbert_count": 340,
+      "distilbert_share": 0.1789,
+      "distilbert_percentage": 17.89,
+      "distilbert_error_rate_pct": 1.16,
+      "error_reduction_count": 93,
+      "comparative_note": "DeBERTa has 247 errors against 340 for DistilBERT in this category (raw text, amazon_test, n = 72,846). Overall test errors fell from 1,901 to 1,382 (-27.3%); this category: -27.4% (-93 errors). Not an ablation; model differences are bundled.",
+      "example_ids": [
+        "1501",
+        "3947",
+        "5610"
+      ]
+    },
+    {
+      "id": "packaging_defect",
+      "label": "Subtle Packaging/Transit Complaints",
+      "description": "Complaints focused on outer shipping boxes, broken inner seals, crushed packaging, or logistics transit damage.",
+      "count": 79,
+      "count_tagged": 79,
+      "count_reviewed": 79,
+      "share": 0.0572,
+      "percentage": 5.72,
+      "total_reviews": 5396,
+      "error_rate": 0.0146,
+      "error_rate_pct": 1.46,
+      "distilbert_count": 101,
+      "distilbert_share": 0.0531,
+      "distilbert_percentage": 5.31,
+      "distilbert_error_rate_pct": 1.87,
+      "error_reduction_count": 22,
+      "comparative_note": "DeBERTa has 79 errors against 101 for DistilBERT in this category (raw text, amazon_test, n = 72,846). Overall test errors fell from 1,901 to 1,382 (-27.3%); this category: -21.8% (-22 errors). Not an ablation; model differences are bundled.",
+      "example_ids": [
+        "6523",
+        "20900",
+        "22443"
+      ]
+    },
+    {
+      "id": "sequence_truncation",
+      "label": "Sequence Truncation Beyond 128 Tokens",
+      "description": "Long customer reviews spanning 128 or more words where critical sentiment signals may lie beyond the token truncation horizon.",
+      "count": 22,
+      "count_tagged": 22,
+      "count_reviewed": 22,
+      "share": 0.0159,
+      "percentage": 1.59,
+      "total_reviews": 1336,
+      "error_rate": 0.0165,
+      "error_rate_pct": 1.65,
+      "distilbert_count": 36,
+      "distilbert_share": 0.0189,
+      "distilbert_percentage": 1.89,
+      "distilbert_error_rate_pct": 2.69,
+      "error_reduction_count": 14,
+      "comparative_note": "DeBERTa has 22 errors against 36 for DistilBERT in this category (raw text, amazon_test, n = 72,846). Overall test errors fell from 1,901 to 1,382 (-27.3%); this category: -38.9% (-14 errors). Not an ablation; model differences are bundled.",
+      "example_ids": [
+        "10925",
+        "34380",
+        "36759"
+      ]
+    },
+    {
+      "id": "rating_inversion",
+      "label": "Rating-Text Inversion (Label Noise)",
+      "description": "Reviews where positive praise text is attached to 1-star ratings or vice versa, indicative of user rating error or label noise.",
+      "count": 18,
+      "count_tagged": 18,
+      "count_reviewed": 18,
+      "share": 0.013,
+      "percentage": 1.3,
+      "total_reviews": 89,
+      "error_rate": 0.2022,
+      "error_rate_pct": 20.22,
+      "distilbert_count": 25,
+      "distilbert_share": 0.0132,
+      "distilbert_percentage": 1.32,
+      "distilbert_error_rate_pct": 28.09,
+      "error_reduction_count": 7,
+      "comparative_note": "DeBERTa has 18 errors against 25 for DistilBERT in this category (raw text, amazon_test, n = 72,846). Overall test errors fell from 1,901 to 1,382 (-27.3%); this category: -28.0% (-7 errors). Not an ablation; model differences are bundled.",
+      "example_ids": [
+        "24202",
+        "24875",
+        "26859"
+      ]
+    },
+    {
+      "id": "domain_lexicon",
+      "label": "Domain-Specific Food Idioms & Jargon",
+      "description": "Domain-specific food descriptors such as stale, rancid, cardboard, chemical, rubbery, or aftertaste.",
+      "count": 11,
+      "count_tagged": 11,
+      "count_reviewed": 11,
+      "share": 0.008,
+      "percentage": 0.8,
+      "total_reviews": 1466,
+      "error_rate": 0.0075,
+      "error_rate_pct": 0.75,
+      "distilbert_count": 20,
+      "distilbert_share": 0.0105,
+      "distilbert_percentage": 1.05,
+      "distilbert_error_rate_pct": 1.36,
+      "error_reduction_count": 9,
+      "comparative_note": "DeBERTa has 11 errors against 20 for DistilBERT in this category (raw text, amazon_test, n = 72,846). Overall test errors fell from 1,901 to 1,382 (-27.3%); this category: -45.0% (-9 errors). Not an ablation; model differences are bundled.",
+      "example_ids": [
+        "17634",
+        "23605",
+        "179129"
+      ]
+    },
+    {
+      "id": "sarcasm",
+      "label": "Sarcasm & Ironic Polarity",
+      "description": "Ironic polarity, sarcastic praise (e.g. yeah right, thanks for nothing), or expressive punctuation (!?, ?!).",
+      "count": 4,
+      "count_tagged": 4,
+      "count_reviewed": 4,
+      "share": 0.0029,
+      "percentage": 0.29,
+      "total_reviews": 235,
+      "error_rate": 0.017,
+      "error_rate_pct": 1.7,
+      "distilbert_count": 12,
+      "distilbert_share": 0.0063,
+      "distilbert_percentage": 0.63,
+      "distilbert_error_rate_pct": 5.11,
+      "error_reduction_count": 8,
+      "comparative_note": "DeBERTa has 4 errors against 12 for DistilBERT in this category (raw text, amazon_test, n = 72,846). Overall test errors fell from 1,901 to 1,382 (-27.3%); this category: -66.7% (-8 errors). Not an ablation; model differences are bundled.",
+      "example_ids": [
+        "5732",
+        "188098",
+        "383283"
+      ]
+    }
+  ],
+  "comparison": {
+    "model_id": "distilbert-base-uncased",
+    "display_name": "DistilBERT 281k (Comparison Model)",
+    "eval_set_id": "amazon_test",
+    "split": "test",
+    "n": 72846,
+    "inference_config": "raw text, argmax",
+    "n_errors_total": 1901,
+    "n_tagged": 1901,
+    "n_reviewed": 1901,
+    "categories": [
+      {
+        "id": "mixed_clauses",
+        "label": "Mixed / Contrastive Clauses ('good, but...')",
+        "count": 1367,
+        "count_tagged": 1367,
+        "count_reviewed": 1367,
+        "share": 0.7191,
+        "percentage": 71.91,
+        "total_reviews": 35040,
+        "error_rate": 0.039,
+        "error_rate_pct": 3.9,
+        "example_ids": [
+          "265",
+          "594",
+          "760"
+        ]
+      },
+      {
+        "id": "indirect_negation",
+        "label": "Indirect & Nuanced Sentiment (Residual)",
+        "count": 340,
+        "count_tagged": 340,
+        "count_reviewed": 340,
+        "share": 0.1789,
+        "percentage": 17.89,
+        "total_reviews": 29284,
+        "error_rate": 0.0116,
+        "error_rate_pct": 1.16,
+        "example_ids": [
+          "1461",
+          "1501",
+          "3288"
+        ]
+      },
+      {
+        "id": "packaging_defect",
+        "label": "Subtle Packaging/Transit Complaints",
+        "count": 101,
+        "count_tagged": 101,
+        "count_reviewed": 101,
+        "share": 0.0531,
+        "percentage": 5.31,
+        "total_reviews": 5396,
+        "error_rate": 0.0187,
+        "error_rate_pct": 1.87,
+        "example_ids": [
+          "6523",
+          "12961",
+          "16381"
+        ]
+      },
+      {
+        "id": "sequence_truncation",
+        "label": "Sequence Truncation Beyond 128 Tokens",
+        "count": 36,
+        "count_tagged": 36,
+        "count_reviewed": 36,
+        "share": 0.0189,
+        "percentage": 1.89,
+        "total_reviews": 1336,
+        "error_rate": 0.0269,
+        "error_rate_pct": 2.69,
+        "example_ids": [
+          "11130",
+          "13316",
+          "15327"
+        ]
+      },
+      {
+        "id": "rating_inversion",
+        "label": "Rating-Text Inversion (Label Noise)",
+        "count": 25,
+        "count_tagged": 25,
+        "count_reviewed": 25,
+        "share": 0.0132,
+        "percentage": 1.32,
+        "total_reviews": 89,
+        "error_rate": 0.2809,
+        "error_rate_pct": 28.09,
+        "example_ids": [
+          "24202",
+          "24875",
+          "26859"
+        ]
+      },
+      {
+        "id": "domain_lexicon",
+        "label": "Domain-Specific Food Idioms & Jargon",
+        "count": 20,
+        "count_tagged": 20,
+        "count_reviewed": 20,
+        "share": 0.0105,
+        "percentage": 1.05,
+        "total_reviews": 1466,
+        "error_rate": 0.0136,
+        "error_rate_pct": 1.36,
+        "example_ids": [
+          "17634",
+          "23605",
+          "30566"
+        ]
+      },
+      {
+        "id": "sarcasm",
+        "label": "Sarcasm & Ironic Polarity",
+        "count": 12,
+        "count_tagged": 12,
+        "count_reviewed": 12,
+        "share": 0.0063,
+        "percentage": 0.63,
+        "total_reviews": 235,
+        "error_rate": 0.0511,
+        "error_rate_pct": 5.11,
+        "example_ids": [
+          "46651",
+          "95829",
+          "170681"
+        ]
+      }
+    ]
+  },
+  "overlap": {
+    "shared_errors": 968,
+    "fixed_errors": 933,
+    "new_errors": 414,
+    "net_reduction": 519,
+    "mcnemar_chi2": 199.2,
+    "p_value": "< 0.0001",
+    "fixed_definition": "DistilBERT wrong, DeBERTa correct",
+    "new_definition": "DeBERTa wrong, DistilBERT correct",
+    "shared_definition": "Both models wrong",
+    "overall_distilbert_errors": 1901,
+    "overall_deberta_errors": 1382,
+    "overall_reduction_pct": 27.3,
+    "description": "Of DeBERTa's 1,382 errors, 968 are shared with DistilBERT and 414 are new errors where DistilBERT was correct. DeBERTa correctly classifies 933 reviews that DistilBERT failed on, for a net reduction of 519 errors."
+  }
+}

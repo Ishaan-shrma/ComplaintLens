@@ -1,15 +1,21 @@
-pandas
-numpy
-matplotlib
-seaborn
-plotly
-scikit-learn
-duckdb
-jupyter
-streamlit
-nltk
-sentence-transformers
-faiss-cpu
-fastapi
-uvicorn
-kaggle
+# Core Data Science & Analysis
+pandas>=2.0.0
+numpy>=1.24.0
+scikit-learn>=1.2.2
+joblib>=1.3.2
+
+# Deep Learning & Transformers
+torch>=2.1.0
+transformers>=4.38.0
+datasets>=2.18.0
+
+# Semantic Search & Vector Retrieval
+sentence-transformers>=2.5.0
+faiss-cpu>=1.8.0
+
+# Dashboard & Visualization
+streamlit>=1.32.0
+plotly>=5.14.0
+
+# Testing Suite (Week 6 Guardrails)
+pytest>=8.0.0

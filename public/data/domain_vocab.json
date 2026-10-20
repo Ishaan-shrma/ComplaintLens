@@ -1,0 +1,155 @@
+{
+  "meta": {
+    "model_id": "domain_vocabulary",
+    "source_files": [
+      "data/processed/omni_corpus.csv"
+    ],
+    "generated_at": "2026-10-18T21:30:18.899519+00:00",
+    "eval_set": {
+      "id": "omni_corpus",
+      "name": "Cross-Domain Vocabulary",
+      "n": 453878,
+      "n_negative": 69828,
+      "n_positive": 384050
+    },
+    "split": "test"
+  },
+  "platforms": {
+    "Amazon Fine Food": [
+      {
+        "term": "taste",
+        "score": 9.4
+      },
+      {
+        "term": "flavor",
+        "score": 9.1
+      },
+      {
+        "term": "coffee",
+        "score": 8.7
+      },
+      {
+        "term": "tea",
+        "score": 8.4
+      },
+      {
+        "term": "sweet",
+        "score": 7.9
+      },
+      {
+        "term": "delicious",
+        "score": 7.6
+      },
+      {
+        "term": "stale",
+        "score": 7.2
+      },
+      {
+        "term": "packaging",
+        "score": 6.8
+      }
+    ],
+    "Flipkart Retail": [
+      {
+        "term": "battery",
+        "score": 9.6
+      },
+      {
+        "term": "phone",
+        "score": 9.3
+      },
+      {
+        "term": "screen",
+        "score": 8.8
+      },
+      {
+        "term": "camera",
+        "score": 8.5
+      },
+      {
+        "term": "charging",
+        "score": 8.1
+      },
+      {
+        "term": "heating",
+        "score": 7.8
+      },
+      {
+        "term": "delivery",
+        "score": 7.3
+      },
+      {
+        "term": "flipkart",
+        "score": 6.9
+      }
+    ],
+    "Yelp Dining": [
+      {
+        "term": "service",
+        "score": 9.5
+      },
+      {
+        "term": "food",
+        "score": 9.2
+      },
+      {
+        "term": "table",
+        "score": 8.6
+      },
+      {
+        "term": "server",
+        "score": 8.3
+      },
+      {
+        "term": "restaurant",
+        "score": 8.0
+      },
+      {
+        "term": "wait",
+        "score": 7.7
+      },
+      {
+        "term": "ambiance",
+        "score": 7.4
+      },
+      {
+        "term": "dinner",
+        "score": 7.0
+      }
+    ],
+    "IMDb Cinema": [
+      {
+        "term": "movie",
+        "score": 9.8
+      },
+      {
+        "term": "film",
+        "score": 9.5
+      },
+      {
+        "term": "acting",
+        "score": 8.9
+      },
+      {
+        "term": "character",
+        "score": 8.6
+      },
+      {
+        "term": "scene",
+        "score": 8.2
+      },
+      {
+        "term": "director",
+        "score": 7.8
+      },
+      {
+        "term": "plot",
+        "score": 7.5
+      },
+      {
+        "term": "performance",
+        "score": 7.1
+      }
+    ]
+  }
+}

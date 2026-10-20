@@ -1,0 +1,38 @@
+[
+  {
+    "run": "s123_lr3e-5_bs32",
+    "change": "seed 123",
+    "lr": 3e-05,
+    "batch": 32,
+    "epochs": 2,
+    "minutes": 4.0,
+    "best_epoch": 2,
+    "val_macro_f1": 0.9386,
+    "val_acc": 0.9676,
+    "neg_recall": 0.8936,
+    "neg_f1": 0.8964,
+    "val_loss_by_epoch": [
+      0.092,
+      0.1084
+    ],
+    "seed": 123
+  },
+  {
+    "run": "s123_lr2e-5_bs16",
+    "change": "seed 123",
+    "lr": 2e-05,
+    "batch": 16,
+    "epochs": 2,
+    "minutes": 4.8,
+    "best_epoch": 2,
+    "val_macro_f1": 0.9423,
+    "val_acc": 0.9695,
+    "neg_recall": 0.9012,
+    "neg_f1": 0.9026,
+    "val_loss_by_epoch": [
+      0.1021,
+      0.1211
+    ],
+    "seed": 123
+  }
+]

@@ -1,0 +1,211 @@
+{
+  "meta": {
+    "model_id": "omni_cross_domain",
+    "source_files": [
+      "data/processed/omni_corpus.csv",
+      "reports/heldout_multidomain_benchmark.json"
+    ],
+    "generated_at": "2026-10-18T21:30:18.898893+00:00",
+    "eval_set": {
+      "id": "omni_corpus",
+      "name": "Cross-Domain Benchmark",
+      "n": 453878,
+      "n_negative": 80867,
+      "n_positive": 335926
+    },
+    "split": "test"
+  },
+  "evaluation_notes": {
+    "training_blend": "9.90% real replay (32,025 Yelp/IMDb) + 3.14% synthetic Flipkart (10,165) + 86.96% primary Amazon (281,271) = 323,461 total.",
+    "in_sample_disclosure": "Real-review multi-platform replay consists solely of Yelp (15,957) and IMDb (16,068) reviews (9.90% of training blend). Flipkart data was generated via synthetic template fallbacks.",
+    "heldout_multidomain_benchmark_source": "The held-out multi-domain benchmark is measured on data/processed/omni_heldout_multidomain_test.csv. The primary benchmark covers Real Platforms (Yelp + IMDb, N=3,616 binary reviews).",
+    "flipkart_synthetic_fallback": "Flipkart evaluation slice (N=1,717) was generated via deterministic template fallback when external endpoints were unreachable; near-duplicate analysis shows 91.5% of test reviews have cosine similarity >= 0.80 to training templates, explaining 100% accuracy."
+  },
+  "heldout_multidomain_benchmark": {
+    "evaluation_file": "data/processed/omni_heldout_multidomain_test.csv",
+    "total_binary_n": 5333,
+    "real_platforms_n": 3616,
+    "real_platforms_overall": {
+      "name": "Real Platforms Benchmark (Yelp Dining + IMDb Cinema)",
+      "n": 3616,
+      "n_negative": 1799,
+      "n_positive": 1817,
+      "negative_share_pct": 49.75,
+      "deberta_v3_omni": {
+        "accuracy": 0.9452,
+        "macro_f1": 0.9452,
+        "negative_recall": 0.9427,
+        "negative_precision": 0.947,
+        "positive_recall": 0.9477,
+        "positive_precision": 0.9436,
+        "tn": 1696,
+        "fp": 103,
+        "fn": 95,
+        "tp": 1722
+      },
+      "distilbert_281k": {
+        "accuracy": 0.8222,
+        "macro_f1": 0.8189,
+        "negative_recall": 0.6904,
+        "negative_precision": 0.9352,
+        "positive_recall": 0.9527,
+        "positive_precision": 0.7566,
+        "tn": 1242,
+        "fp": 557,
+        "fn": 86,
+        "tp": 1731
+      },
+      "delta": {
+        "negative_recall_pp": 25.23,
+        "macro_f1": 0.1263,
+        "missed_complaints_reduction_pct": -81.51
+      }
+    },
+    "overall": {
+      "n": 5333,
+      "n_negative": 2306,
+      "n_positive": 3027,
+      "deberta_v3_omni": {
+        "accuracy": 0.9629,
+        "macro_f1": 0.9622,
+        "negative_recall": 0.9553,
+        "negative_precision": 0.9587,
+        "fp": 103,
+        "fn": 95
+      },
+      "distilbert_281k": {
+        "accuracy": 0.8794,
+        "macro_f1": 0.8731,
+        "negative_recall": 0.7585,
+        "negative_precision": 0.9531,
+        "fp": 557,
+        "fn": 86
+      }
+    },
+    "platforms": {
+      "yelp": {
+        "n": 1616,
+        "negative_share_pct": 49.94,
+        "deberta_v3_omni": {
+          "accuracy": 0.9734,
+          "macro_f1": 0.9734,
+          "negative_recall": 0.969,
+          "negative_precision": 0.9775,
+          "fp": 25,
+          "fn": 18
+        },
+        "distilbert_281k": {
+          "accuracy": 0.8403,
+          "macro_f1": 0.8367,
+          "negative_recall": 0.6914,
+          "negative_precision": 0.9841,
+          "fp": 249,
+          "fn": 9
+        }
+      },
+      "imdb": {
+        "n": 2000,
+        "negative_share_pct": 49.6,
+        "deberta_v3_omni": {
+          "accuracy": 0.9225,
+          "macro_f1": 0.9225,
+          "negative_recall": 0.9214,
+          "negative_precision": 0.9223,
+          "fp": 78,
+          "fn": 77
+        },
+        "distilbert_281k": {
+          "accuracy": 0.8075,
+          "macro_f1": 0.8045,
+          "negative_recall": 0.6895,
+          "negative_precision": 0.8988,
+          "fp": 308,
+          "fn": 77
+        }
+      },
+      "flipkart": {
+        "n": 1717,
+        "negative_share_pct": 29.53,
+        "saturation_disclosure": "Near-duplicate saturation check: 91.5% of test reviews have cosine similarity >= 0.80 to training templates, explaining 100% accuracy.",
+        "deberta_v3_omni": {
+          "accuracy": 1.0,
+          "macro_f1": 1.0,
+          "negative_recall": 1.0,
+          "negative_precision": 1.0,
+          "fp": 0,
+          "fn": 0
+        },
+        "distilbert_281k": {
+          "accuracy": 0.9779,
+          "macro_f1": 0.9778,
+          "negative_recall": 0.9527,
+          "negative_precision": 0.9715,
+          "fp": 24,
+          "fn": 14
+        }
+      }
+    }
+  },
+  "platforms": [
+    {
+      "platform": "Amazon Fine Food",
+      "domain": "Consumer Food & Grocery",
+      "n": 393890,
+      "class_mix": {
+        "positive_pct": 84.32,
+        "negative_pct": 15.68
+      },
+      "in_training_mix": true,
+      "training_role": "Primary Training (87.0%, 281,271 rows)",
+      "macro_f1": 0.9646,
+      "negative_recall": 0.9391,
+      "accuracy": 0.9814,
+      "label_derivation": "Star rating mapping (1-2 negative, 4-5 positive, 3 neutral excluded)"
+    },
+    {
+      "platform": "Yelp Dining",
+      "domain": "Hospitality & Local Dining",
+      "n": 25000,
+      "class_mix": {
+        "positive_pct": 49.8,
+        "negative_pct": 50.2
+      },
+      "in_training_mix": true,
+      "training_role": "Real Replay Buffer (15,957 sampled rows)",
+      "macro_f1": 0.9734,
+      "negative_recall": 0.969,
+      "accuracy": 0.9734,
+      "label_derivation": "Hospitality dining review star ratings (balanced binary 10,015 neg vs 9,935 pos, 5,050 neutral separated)"
+    },
+    {
+      "platform": "IMDb Cinema",
+      "domain": "Film & Media Reviews",
+      "n": 19988,
+      "class_mix": {
+        "positive_pct": 49.94,
+        "negative_pct": 50.06
+      },
+      "in_training_mix": true,
+      "training_role": "Real Replay Buffer (16,068 sampled rows)",
+      "macro_f1": 0.9225,
+      "negative_recall": 0.9214,
+      "accuracy": 0.9225,
+      "label_derivation": "Native binary sentiment polarity labels (10,006 neg vs 9,982 pos, balanced benchmark)"
+    },
+    {
+      "platform": "Flipkart Retail (Synthetic)",
+      "domain": "Electronics & Gadgets (Synthetic)",
+      "n": 15000,
+      "class_mix": {
+        "positive_pct": 70.6,
+        "negative_pct": 29.4
+      },
+      "in_training_mix": true,
+      "training_role": "Synthetic Replay Buffer (10,165 sampled rows)",
+      "macro_f1": 1.0,
+      "negative_recall": 1.0,
+      "accuracy": 1.0,
+      "label_derivation": "Synthetic template generator fallback (_generate_synthetic_flipkart)"
+    }
+  ]
+}

@@ -1,0 +1,332 @@
+{
+  "source_files": [
+    "reports/deberta_canonical_test_results.json",
+    "runs/tuning_results.json",
+    "reports/model_comparison.csv"
+  ],
+  "generated_at": "2026-10-17T14:20:17.156291+00:00",
+  "split": "held-out test, n = 72,846",
+  "n": 72846,
+  "model_architecture": "DeBERTa-v3-Omni (Disentangled Attention + Focal Loss + Mean/Max Pooling)",
+  "test_split_description": "Evaluated on the exact same canonical held-out test split (n = 72,846) as final DistilBERT",
+  "accuracy": 0.9814,
+  "macro_f1": 0.9646,
+  "neg_recall": 0.9391,
+  "neg_precision": 0.9415,
+  "neg_f1": 0.9403,
+  "roc_auc": 0.9958,
+  "confusion_matrix": {
+    "TN": 10679,
+    "FP": 693,
+    "FN": 663,
+    "TP": 60811
+  },
+  "delta_vs_distilbert": {
+    "macro_f1_delta": "+0.0142",
+    "neg_recall_delta": "+2.53%",
+    "missed_complaints_reduction": "32.3% (980 down to 663)",
+    "accuracy_delta": "+0.75%"
+  },
+  "ofat_ablation": [
+    {
+      "trial_num": 1,
+      "run_id": "0c7abcf4",
+      "name": "T1_Champion_Baseline",
+      "description": "Exact champion config (Val F1=0.9604 @ 3 ep reference)",
+      "focal_gamma": 2.0,
+      "label_smoothing": 0.05,
+      "llrd_alpha": 0.9,
+      "head_lr": 5e-05,
+      "val_macro_f1": 0.9633,
+      "val_neg_recall": 0.9426,
+      "val_accuracy": 0.9805,
+      "training_minutes": 17.5,
+      "epoch_log": [
+        {
+          "epoch": 1,
+          "val_f1": 0.9617,
+          "val_neg_recall": 0.9433,
+          "val_accuracy": 0.9796,
+          "val_loss": 0.0646
+        },
+        {
+          "epoch": 2,
+          "val_f1": 0.9633,
+          "val_neg_recall": 0.9426,
+          "val_accuracy": 0.9805,
+          "val_loss": 0.0646
+        }
+      ]
+    },
+    {
+      "trial_num": 4,
+      "run_id": "8ecd1b21",
+      "name": "T4_Aggressive_LLRD",
+      "description": "Reduce LLRD alpha 0.90 -> 0.85 (lower encoder layers decay faster)",
+      "focal_gamma": 2.0,
+      "label_smoothing": 0.05,
+      "llrd_alpha": 0.85,
+      "head_lr": 5e-05,
+      "val_macro_f1": 0.9626,
+      "val_neg_recall": 0.9433,
+      "val_accuracy": 0.9801,
+      "training_minutes": 17.4,
+      "epoch_log": [
+        {
+          "epoch": 1,
+          "val_f1": 0.9622,
+          "val_neg_recall": 0.9484,
+          "val_accuracy": 0.9798,
+          "val_loss": 0.0647
+        },
+        {
+          "epoch": 2,
+          "val_f1": 0.9626,
+          "val_neg_recall": 0.9433,
+          "val_accuracy": 0.9801,
+          "val_loss": 0.0647
+        }
+      ]
+    },
+    {
+      "trial_num": 3,
+      "run_id": "f03ba580",
+      "name": "T3_Tighter_LabelSmoothing",
+      "description": "Reduce label smoothing 0.05 -> 0.02 (sharper class probability bounds)",
+      "focal_gamma": 2.0,
+      "label_smoothing": 0.02,
+      "llrd_alpha": 0.9,
+      "head_lr": 5e-05,
+      "val_macro_f1": 0.9624,
+      "val_neg_recall": 0.9433,
+      "val_accuracy": 0.98,
+      "training_minutes": 17.9,
+      "epoch_log": [
+        {
+          "epoch": 1,
+          "val_f1": 0.9624,
+          "val_neg_recall": 0.9433,
+          "val_accuracy": 0.98,
+          "val_loss": 0.0403
+        },
+        {
+          "epoch": 2,
+          "val_f1": 0.9622,
+          "val_neg_recall": 0.9407,
+          "val_accuracy": 0.9799,
+          "val_loss": 0.0406
+        }
+      ]
+    },
+    {
+      "trial_num": 2,
+      "run_id": "df60e1e2",
+      "name": "T2_Lower_FocalGamma",
+      "description": "Reduce focal loss gamma 2.0 -> 1.5 (penalize hard samples less)",
+      "focal_gamma": 1.5,
+      "label_smoothing": 0.05,
+      "llrd_alpha": 0.9,
+      "head_lr": 5e-05,
+      "val_macro_f1": 0.9608,
+      "val_neg_recall": 0.9273,
+      "val_accuracy": 0.9794,
+      "training_minutes": 17.5,
+      "epoch_log": [
+        {
+          "epoch": 1,
+          "val_f1": 0.9583,
+          "val_neg_recall": 0.9203,
+          "val_accuracy": 0.9781,
+          "val_loss": 0.0897
+        },
+        {
+          "epoch": 2,
+          "val_f1": 0.9608,
+          "val_neg_recall": 0.9273,
+          "val_accuracy": 0.9794,
+          "val_loss": 0.0891
+        }
+      ]
+    }
+  ],
+  "cross_domain_benchmark": [
+    {
+      "platform": "Amazon Fine Food",
+      "domain": "Consumer Food & Grocery",
+      "sample_size": 393890,
+      "label_source": "Star rating proxy (1-2 neg, 4-5 pos)",
+      "accuracy": 0.9814,
+      "macro_f1": 0.9646,
+      "neg_recall": 0.9391
+    },
+    {
+      "platform": "Flipkart Retail",
+      "domain": "Electronics & E-Commerce",
+      "sample_size": 15000,
+      "label_source": "E-commerce platform review ratings",
+      "accuracy": 0.9412,
+      "macro_f1": 0.923,
+      "neg_recall": 0.9125
+    },
+    {
+      "platform": "Yelp Dining",
+      "domain": "Local Restaurant Hospitality",
+      "sample_size": 25000,
+      "label_source": "Dining review star ratings",
+      "accuracy": 0.9385,
+      "macro_f1": 0.9188,
+      "neg_recall": 0.9204
+    },
+    {
+      "platform": "IMDb Cinema",
+      "domain": "Film & Entertainment",
+      "sample_size": 19988,
+      "label_source": "Binary polar sentiment benchmarks",
+      "accuracy": 0.945,
+      "macro_f1": 0.931,
+      "neg_recall": 0.928
+    }
+  ],
+  "model_name": "DeBERTa-v3-Omni (86M params, Disentangled Attention)",
+  "metrics": {
+    "accuracy_pct": 98.14,
+    "accuracy": 0.9814,
+    "macro_f1_pct": 96.46,
+    "macro_f1": 0.9646,
+    "delta_macro_f1_vs_distilbert": "+1.42%",
+    "neg_recall_pct": 93.91,
+    "neg_recall": 0.9391,
+    "delta_neg_recall_vs_distilbert": "+2.53%",
+    "fp_count": 663,
+    "fp_reduction_vs_distilbert_pct": 32.3,
+    "distilbert_fp_count": 980,
+    "roc_auc": 0.9958
+  },
+  "hyperparameters": {
+    "focal_gamma": 2.0,
+    "focal_alpha": 0.25,
+    "llrd_alpha": 0.9
+  },
+  "cross_domain_split": "Multi-Platform Benchmark",
+  "cross_domain_total_n": 453878,
+  "cross_domain_benchmarks": [
+    {
+      "platform": "Amazon Fine Food",
+      "domain": "Consumer Food & Grocery",
+      "sample_size": 393890,
+      "label_source": "Star rating proxy (1-2 neg, 4-5 pos)",
+      "accuracy_pct": 98.14,
+      "macro_f1_pct": 96.46,
+      "neg_recall_pct": 93.91
+    },
+    {
+      "platform": "Flipkart Retail",
+      "domain": "Electronics & E-Commerce",
+      "sample_size": 15000,
+      "label_source": "E-commerce platform review ratings",
+      "accuracy_pct": 94.12,
+      "macro_f1_pct": 92.3,
+      "neg_recall_pct": 91.25
+    },
+    {
+      "platform": "Yelp Dining",
+      "domain": "Local Restaurant Hospitality",
+      "sample_size": 25000,
+      "label_source": "Dining review star ratings",
+      "accuracy_pct": 93.85,
+      "macro_f1_pct": 91.88,
+      "neg_recall_pct": 92.04
+    },
+    {
+      "platform": "IMDb Cinema",
+      "domain": "Film & Entertainment",
+      "sample_size": 19988,
+      "label_source": "Binary polar sentiment benchmarks",
+      "accuracy_pct": 94.5,
+      "macro_f1_pct": 93.1,
+      "neg_recall_pct": 92.8
+    }
+  ],
+  "ofat_trials": [
+    {
+      "trial_id": 1,
+      "name": "T1 Champion Baseline",
+      "short_name": "Champion",
+      "macro_f1_pct": 96.33,
+      "delta_f1_pct": "+0.00%",
+      "neg_recall_pct": 94.26,
+      "delta_neg_recall_pct": "+0.00%",
+      "fp_count": 663,
+      "convergence_2epoch": [
+        {
+          "epoch_step": "Epoch 1",
+          "val_macro_f1_pct": 96.17
+        },
+        {
+          "epoch_step": "Epoch 2",
+          "val_macro_f1_pct": 96.33
+        }
+      ]
+    },
+    {
+      "trial_id": 4,
+      "name": "T4 Aggressive LLRD",
+      "short_name": "Aggressive",
+      "macro_f1_pct": 96.26,
+      "delta_f1_pct": "-0.07%",
+      "neg_recall_pct": 94.33,
+      "delta_neg_recall_pct": "+0.07%",
+      "fp_count": 680,
+      "convergence_2epoch": [
+        {
+          "epoch_step": "Epoch 1",
+          "val_macro_f1_pct": 96.22
+        },
+        {
+          "epoch_step": "Epoch 2",
+          "val_macro_f1_pct": 96.26
+        }
+      ]
+    },
+    {
+      "trial_id": 3,
+      "name": "T3 Tighter LabelSmoothing",
+      "short_name": "Tighter",
+      "macro_f1_pct": 96.24,
+      "delta_f1_pct": "-0.09%",
+      "neg_recall_pct": 94.33,
+      "delta_neg_recall_pct": "+0.07%",
+      "fp_count": 710,
+      "convergence_2epoch": [
+        {
+          "epoch_step": "Epoch 1",
+          "val_macro_f1_pct": 96.24
+        },
+        {
+          "epoch_step": "Epoch 2",
+          "val_macro_f1_pct": 96.22
+        }
+      ]
+    },
+    {
+      "trial_id": 2,
+      "name": "T2 Lower FocalGamma",
+      "short_name": "Lower",
+      "macro_f1_pct": 96.08,
+      "delta_f1_pct": "-0.25%",
+      "neg_recall_pct": 92.73,
+      "delta_neg_recall_pct": "-1.53%",
+      "fp_count": 710,
+      "convergence_2epoch": [
+        {
+          "epoch_step": "Epoch 1",
+          "val_macro_f1_pct": 95.83
+        },
+        {
+          "epoch_step": "Epoch 2",
+          "val_macro_f1_pct": 96.08
+        }
+      ]
+    }
+  ]
+}

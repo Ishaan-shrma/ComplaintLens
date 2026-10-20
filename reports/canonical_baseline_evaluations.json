@@ -1,0 +1,54 @@
+[
+  {
+    "model_id": "Linear SVM (C=0.5, Tuned TF-IDF)",
+    "display_name": "Linear SVM (C=0.5, Tuned TF-IDF)",
+    "train_n": 281271,
+    "eval_set_id": "amazon_test",
+    "accuracy": 0.9617,
+    "macro_f1": 0.9254,
+    "negative_precision": 0.9036,
+    "negative_recall": 0.8451,
+    "fp": 1762,
+    "fn": 1025,
+    "status": "evaluated once"
+  },
+  {
+    "model_id": "Logistic Regression (L2, C=1.0)",
+    "display_name": "Logistic Regression (L2, C=1.0)",
+    "train_n": 281271,
+    "eval_set_id": "amazon_test",
+    "accuracy": 0.9549,
+    "macro_f1": 0.9094,
+    "negative_precision": 0.9111,
+    "negative_recall": 0.7882,
+    "fp": 2409,
+    "fn": 875,
+    "status": "evaluated once"
+  },
+  {
+    "model_id": "Multinomial Naive Bayes",
+    "display_name": "Multinomial Naive Bayes",
+    "train_n": 281271,
+    "eval_set_id": "amazon_test",
+    "accuracy": 0.937,
+    "macro_f1": 0.8691,
+    "negative_precision": 0.8771,
+    "negative_recall": 0.6937,
+    "fp": 3483,
+    "fn": 1105,
+    "status": "evaluated once"
+  },
+  {
+    "model_id": "Majority Dummy Classifier",
+    "display_name": "Majority Dummy Classifier",
+    "train_n": 281271,
+    "eval_set_id": "amazon_test",
+    "accuracy": 0.8439,
+    "macro_f1": 0.4577,
+    "negative_precision": 0.0,
+    "negative_recall": 0.0,
+    "fp": 11372,
+    "fn": 0,
+    "status": "evaluated once"
+  }
+]

@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "model_id": "microsoft/deberta-v3-base",
+    "source_files": [
+      "runs/tuning_results.json"
+    ],
+    "generated_at": "2026-10-18T21:30:18.886931+00:00",
+    "eval_set": {
+      "id": "amazon_val",
+      "name": "Validation Split",
+      "n": 9997,
+      "n_negative": 1568,
+      "n_positive": 8429
+    },
+    "split": "validation"
+  },
+  "baseline": {
+    "trial_id": "T1_Champion_Baseline",
+    "parameter": "baseline",
+    "value": "Focal Gamma=2.0, Smoothing=0.05, LLRD=0.90, LR=5e-5",
+    "macro_f1": 0.9633,
+    "negative_recall": 0.9426,
+    "accuracy": 0.9805
+  },
+  "trials": [
+    {
+      "trial_id": "T1_Champion_Baseline",
+      "parameter": "baseline",
+      "value": "Focal Gamma=2.0, Smoothing=0.05, LLRD=0.90",
+      "macro_f1": 0.9633,
+      "negative_recall": 0.9426,
+      "epoch_log": [
+        {
+          "epoch": 1,
+          "val_f1": 0.9617,
+          "val_loss": 0.0646
+        },
+        {
+          "epoch": 2,
+          "val_f1": 0.9633,
+          "val_loss": 0.0646
+        }
+      ]
+    },
+    {
+      "trial_id": "T2_Lower_FocalGamma",
+      "parameter": "focal_gamma",
+      "value": "1.5 (down from 2.0)",
+      "macro_f1": 0.9608,
+      "negative_recall": 0.9273,
+      "epoch_log": [
+        {
+          "epoch": 1,
+          "val_f1": 0.9583,
+          "val_loss": 0.0652
+        },
+        {
+          "epoch": 2,
+          "val_f1": 0.9608,
+          "val_loss": 0.0651
+        }
+      ]
+    },
+    {
+      "trial_id": "T3_Tighter_LabelSmoothing",
+      "parameter": "label_smoothing",
+      "value": "0.02 (down from 0.05)",
+      "macro_f1": 0.9624,
+      "negative_recall": 0.9433,
+      "epoch_log": [
+        {
+          "epoch": 1,
+          "val_f1": 0.9624,
+          "val_loss": 0.0648
+        },
+        {
+          "epoch": 2,
+          "val_f1": 0.9622,
+          "val_loss": 0.0648
+        }
+      ]
+    },
+    {
+      "trial_id": "T4_Aggressive_LLRD",
+      "parameter": "llrd_alpha",
+      "value": "0.85 (down from 0.90)",
+      "macro_f1": 0.9626,
+      "negative_recall": 0.9433,
+      "epoch_log": [
+        {
+          "epoch": 1,
+          "val_f1": 0.9622,
+          "val_loss": 0.0647
+        },
+        {
+          "epoch": 2,
+          "val_f1": 0.9626,
+          "val_loss": 0.0647
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "stage1": {
+    "cv": "StratifiedKFold(2)",
+    "best_params": {
+      "clf__C": 0.5,
+      "tfidf__max_features": 40000,
+      "tfidf__ngram_range": [
+        1,
+        3
+      ]
+    },
+    "best_cv_macro_f1": 0.9183186794630801
+  },
+  "stage2": {
+    "cv": "StratifiedKFold(4)",
+    "best_params": {
+      "clf__C": 0.5,
+      "clf__class_weight": null
+    },
+    "best_cv_macro_f1": 0.9219037649890454,
+    "tfidf_params": {
+      "max_features": 40000,
+      "ngram_range": [
+        1,
+        3
+      ],
+      "min_df": 5,
+      "sublinear_tf": true
+    },
+    "table": [
+      {
+        "class_weight": "None",
+        "C": 0.5,
+        "cv_macro_f1": 0.9219037649890454,
+        "cv_macro_f1_std": 0.0006511483198076499,
+        "cv_accuracy": 0.9598490778505611
+      },
+      {
+        "class_weight": "None",
+        "C": 0.25,
+        "cv_macro_f1": 0.9216565688618938,
+        "cv_macro_f1_std": 0.0010931528362247641,
+        "cv_accuracy": 0.960065367555171
+      },
+      {
+        "class_weight": "None",
+        "C": 1.0,
+        "cv_macro_f1": 0.9199316892029479,
+        "cv_macro_f1_std": 0.00045904458554689556,
+        "cv_accuracy": 0.9585547727928152
+      },
+      {
+        "class_weight": "None",
+        "C": 2.0,
+        "cv_macro_f1": 0.9152631940092743,
+        "cv_macro_f1_std": 0.000506206083930226,
+        "cv_accuracy": 0.9558803334294621
+      },
+      {
+        "class_weight": "balanced",
+        "C": 0.5,
+        "cv_macro_f1": 0.9134883627122201,
+        "cv_macro_f1_std": 0.00028846850514053466,
+        "cv_accuracy": 0.9514584105796564
+      },
+      {
+        "class_weight": "balanced",
+        "C": 0.25,
+        "cv_macro_f1": 0.9122701575417984,
+        "cv_macro_f1_std": 0.00047857384410677736,
+        "cv_accuracy": 0.9502842664689161
+      },
+      {
+        "class_weight": "balanced",
+        "C": 1.0,
+        "cv_macro_f1": 0.912226505394083,
+        "cv_macro_f1_std": 0.0007948545617738672,
+        "cv_accuracy": 0.9512352545352174
+      },
+      {
+        "class_weight": "balanced",
+        "C": 2.0,
+        "cv_macro_f1": 0.9092512242884038,
+        "cv_macro_f1_std": 0.0004689854236351761,
+        "cv_accuracy": 0.9500473777448193
+      }
+    ]
+  },
+  "minutes": 26.5
+}

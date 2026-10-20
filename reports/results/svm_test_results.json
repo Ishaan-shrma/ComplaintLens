@@ -1,0 +1,26 @@
+{
+  "model": "TF-IDF + LinearSVC",
+  "train_size": 291276,
+  "test_size": 72846,
+  "params": {
+    "tfidf__max_features": "40000",
+    "tfidf__min_df": "5",
+    "tfidf__ngram_range": "(1, 3)",
+    "tfidf__sublinear_tf": "True",
+    "clf__C": "0.5",
+    "clf__class_weight": "None"
+  },
+  "accuracy": 0.9617,
+  "macro_f1": 0.9253,
+  "roc_auc": 0.9854,
+  "neg_precision": 0.904,
+  "neg_recall": 0.8444,
+  "neg_f1": 0.8732,
+  "pos_precision": 0.9716,
+  "pos_recall": 0.9834,
+  "pos_f1": 0.9775,
+  "TN": 9603,
+  "FP": 1769,
+  "FN": 1020,
+  "TP": 60454
+}

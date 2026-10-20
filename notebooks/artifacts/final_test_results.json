@@ -1,0 +1,56 @@
+{
+  "test_set": "72,846 held-out reviews (GroupShuffleSplit, seed 42), each model evaluated once",
+  "svm_tfidf_linearsvc_C0.5_cwNone": {
+    "train": 291276,
+    "accuracy": 0.9617,
+    "macro_f1": 0.9253,
+    "roc_auc": 0.9854,
+    "neg_precision": 0.904,
+    "neg_recall": 0.8444,
+    "neg_f1": 0.8732,
+    "pos_f1": 0.9775,
+    "TN": 9603,
+    "FP": 1769,
+    "FN": 1020,
+    "TP": 60454
+  },
+  "distilbert_50k": {
+    "train": 50000,
+    "accuracy": 0.9673,
+    "macro_f1": 0.9375,
+    "roc_auc": 0.9897,
+    "neg_precision": 0.9037,
+    "neg_recall": 0.8851,
+    "neg_f1": 0.8943,
+    "pos_f1": 0.9807,
+    "TN": 10065,
+    "FP": 1307,
+    "FN": 1073,
+    "TP": 60401
+  },
+  "distilbert_281k_FINAL": {
+    "train": 281271,
+    "accuracy": 0.9739,
+    "macro_f1": 0.9504,
+    "roc_auc": 0.993,
+    "neg_precision": 0.9186,
+    "neg_recall": 0.9138,
+    "neg_f1": 0.9162,
+    "pos_f1": 0.9845,
+    "TN": 10392,
+    "FP": 980,
+    "FN": 921,
+    "TP": 60553
+  },
+  "hyperparameters_final": {
+    "model": "distilbert-base-uncased",
+    "max_length": 128,
+    "lr": 2e-05,
+    "batch": 16,
+    "epochs": 2,
+    "weight_decay": 0.01,
+    "fp16": true,
+    "seed": 42,
+    "class_weight": null
+  }
+}

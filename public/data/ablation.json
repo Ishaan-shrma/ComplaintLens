@@ -1,0 +1,125 @@
+{
+  "source_files": [
+    "notebooks/artifacts/distilbert_results.json",
+    "notebooks/03b_distilbert_finetuning.ipynb",
+    "scratch/runs/distilbert_full281k_manual_4x"
+  ],
+  "generated_at": "2026-10-17T14:20:17.156291+00:00",
+  "split": "50k validation sweep & 72,846 test diagnostic",
+  "n": 50000,
+  "validation_sweep": [
+    {
+      "weight_setting": "Unweighted (1.0x)",
+      "ratio": "1.0:1",
+      "val_macro_f1": 0.9443,
+      "neg_recall": 0.9044,
+      "noise_margin": "+-0.003"
+    },
+    {
+      "weight_setting": "1.5x Negative Weight",
+      "ratio": "1.5:1",
+      "val_macro_f1": 0.9423,
+      "neg_recall": 0.9082,
+      "noise_margin": "+-0.003"
+    },
+    {
+      "weight_setting": "2.0x Negative Weight",
+      "ratio": "2.0:1",
+      "val_macro_f1": 0.9429,
+      "neg_recall": 0.9101,
+      "noise_margin": "+-0.003"
+    },
+    {
+      "weight_setting": "3.0x Negative Weight",
+      "ratio": "3.0:1",
+      "val_macro_f1": 0.9445,
+      "neg_recall": 0.9114,
+      "noise_margin": "+-0.003"
+    },
+    {
+      "weight_setting": "4.0x Negative Weight",
+      "ratio": "4.0:1",
+      "val_macro_f1": 0.9427,
+      "neg_recall": 0.9146,
+      "noise_margin": "+-0.003"
+    },
+    {
+      "weight_setting": "5.0x Negative Weight",
+      "ratio": "5.0:1",
+      "val_macro_f1": 0.9423,
+      "neg_recall": 0.9133,
+      "noise_margin": "+-0.003"
+    },
+    {
+      "weight_setting": "Inverse-Frequency (Balanced)",
+      "ratio": "5.4:1",
+      "val_macro_f1": 0.9438,
+      "neg_recall": 0.9159,
+      "noise_margin": "+-0.003"
+    }
+  ],
+  "weighted_test_diagnostic": {
+    "checkpoint_folder": "scratch/runs/distilbert_full281k_manual_4x",
+    "folder_name_note": "Folder name says 4x, but configuration was actually 50k subset with 3x negative weight",
+    "display_name": "50k subset, 3x negative weight",
+    "role": "Post-hoc diagnostic, not a candidate",
+    "train_n": 50000,
+    "split": "held-out test, n = 72,846",
+    "accuracy": 0.9672,
+    "macro_f1": 0.9378,
+    "roc_auc": 0.9899,
+    "neg_precision": 0.8939,
+    "neg_recall": 0.8962,
+    "confusion_matrix": {
+      "TN": 10192,
+      "FP": 1180,
+      "FN": 1210,
+      "TP": 60264
+    },
+    "baseline_comparison": {
+      "model": "DistilBERT 50k unweighted",
+      "macro_f1": 0.9375,
+      "neg_recall": 0.8851,
+      "neg_recall_delta": "+1.11%",
+      "macro_f1_delta": "+0.0003 (within noise)"
+    }
+  },
+  "conclusion": "Class weighting shifted the operating point between negative recall (+1.1%) and precision (-1.0%), while overall Macro-F1 remained within stochastic run-to-run variation (~0.003).",
+  "consolidated_studio": [
+    {
+      "config_label": "50k (1.0x Unweighted)",
+      "macro_f1_pct": 94.43,
+      "neg_recall_pct": 90.44
+    },
+    {
+      "config_label": "50k (1.5x Weight)",
+      "macro_f1_pct": 94.23,
+      "neg_recall_pct": 90.82
+    },
+    {
+      "config_label": "50k (2.0x Weight)",
+      "macro_f1_pct": 94.29,
+      "neg_recall_pct": 91.01
+    },
+    {
+      "config_label": "50k (3.0x Weight)",
+      "macro_f1_pct": 94.45,
+      "neg_recall_pct": 91.14
+    },
+    {
+      "config_label": "50k (4.0x Weight)",
+      "macro_f1_pct": 94.27,
+      "neg_recall_pct": 91.46
+    },
+    {
+      "config_label": "50k (5.4x Balanced)",
+      "macro_f1_pct": 94.38,
+      "neg_recall_pct": 91.59
+    },
+    {
+      "config_label": "281k (4.0x Production)",
+      "macro_f1_pct": 95.04,
+      "neg_recall_pct": 91.38
+    }
+  ]
+}

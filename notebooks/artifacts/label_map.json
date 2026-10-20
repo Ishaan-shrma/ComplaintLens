@@ -1,0 +1,10 @@
+{
+  "id2label": {
+    "0": "negative",
+    "1": "positive"
+  },
+  "label2id": {
+    "negative": 0,
+    "positive": 1
+  }
+}

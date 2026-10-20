@@ -1,0 +1,21 @@
+{
+  "model": "DeBERTa-v3-Omni Full Production",
+  "checkpoint": "A:\\DS-Review-AI\\models\\deberta_omni_v1\\best_model.pt",
+  "test_samples": 72846,
+  "accuracy": 0.9814,
+  "macro_f1": 0.9646,
+  "negative_recall": 0.9391,
+  "negative_precision": 0.9415,
+  "negative_f1": 0.9403,
+  "positive_recall": 0.9892,
+  "positive_precision": 0.9887,
+  "positive_f1": 0.989,
+  "roc_auc": 0.9957,
+  "confusion_matrix": {
+    "TN": 10679,
+    "FP": 693,
+    "FN": 663,
+    "TP": 60811
+  },
+  "evaluation_minutes": 2.16
+}

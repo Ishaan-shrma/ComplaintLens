@@ -1,0 +1,20 @@
+{
+  "n_test": 72846,
+  "distilbert_errors": 1901,
+  "deberta_errors": 1382,
+  "error_reduction_pct": 27.3,
+  "mcnemar": {
+    "b_distil_ok_deberta_wrong": 414,
+    "c_deberta_ok_distil_wrong": 933,
+    "both_correct": 70531,
+    "both_wrong": 968,
+    "chi2": 199.2012,
+    "p_value": 0.0
+  },
+  "bootstrap_95_ci": {
+    "metric": "error_reduction_pct",
+    "iterations": 10000,
+    "ci_low": 23.97,
+    "ci_high": 30.51
+  }
+}
