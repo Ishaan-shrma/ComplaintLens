@@ -1,44 +1,43 @@
-﻿====================================================================================
-  RUNNING STRICT SECTION 5 EXPORT & INDEPENDENT RECOMPUTATION CHECKS
-====================================================================================
-[PASS] [SELF-CONSISTENCY] DeBERTa: CM sum == eval_set.n                      | Exp: 72846 | Act: 72846
-[PASS] [SELF-CONSISTENCY] DeBERTa: tn + fp == n_negative                     | Exp: 11372 | Act: 11372
-[PASS] [SELF-CONSISTENCY] DeBERTa: fn + tp == n_positive                     | Exp: 61474 | Act: 61474
-[PASS] [SELF-CONSISTENCY] DeBERTa: Accuracy recomputed                       | Exp: 0.9814 | Act: 0.9814
-[PASS] [SELF-CONSISTENCY] DeBERTa: Macro-F1 recomputed                       | Exp: 0.9646 | Act: 0.9646
-[PASS] [SELF-CONSISTENCY] DeBERTa: Neg Recall recomputed                     | Exp: 0.9391 | Act: 0.9391
-[PASS] [SELF-CONSISTENCY] DeBERTa: Neg Precision recomputed                  | Exp: 0.9415 | Act: 0.9415
-[PASS] [INDEPENDENT     ] DistilBERT 281k: Accuracy (CSV recomputed)         | Exp: 0.9739 | Act: 0.9739
-[PASS] [INDEPENDENT     ] DistilBERT 281k: Macro-F1                          | Exp: 0.9504 | Act: 0.9504
-[PASS] [INDEPENDENT     ] DistilBERT 281k: ROC-AUC (CSV recomputed)          | Exp: 0.993 | Act: 0.993
-[PASS] [INDEPENDENT     ] DistilBERT 281k: FP count (CSV recomputed)         | Exp: 980 | Act: 980
-[PASS] [INDEPENDENT     ] DistilBERT 281k: FN count (CSV recomputed)         | Exp: 921 | Act: 921
-[PASS] [INDEPENDENT     ] DistilBERT 281k: Total errors (CSV recomputed)     | Exp: 1901 | Act: 1901
-[PASS] [INDEPENDENT     ] Linear SVM: Accuracy                               | Exp: 0.9617 | Act: 0.9617
-[PASS] [INDEPENDENT     ] Linear SVM: Macro-F1                               | Exp: 0.9253 | Act: 0.9253
-[PASS] [INDEPENDENT     ] Linear SVM: FP count                               | Exp: 1769 | Act: 1769
-[PASS] [INDEPENDENT     ] Linear SVM: FN count                               | Exp: 1020 | Act: 1020
-[PASS] [SELF-CONSISTENCY] Omni platforms sum to Omni total (453,878)         | Exp: 453878 | Act: 453878
-[PASS] [INDEPENDENT     ] Taxonomy DeBERTa: n_errors_total == 1382           | Exp: 1382 | Act: 1382
-[PASS] [SELF-CONSISTENCY] Taxonomy DeBERTa: categories sum to 1382           | Exp: 1382 | Act: 1382
-[PASS] [INDEPENDENT     ] Taxonomy DistilBERT comparison: n_errors_total == 1901 | Exp: 1901 | Act: 1901
-[PASS] [SELF-CONSISTENCY] Taxonomy DistilBERT: categories sum to 1901        | Exp: 1901 | Act: 1901
-[PASS] [SELF-CONSISTENCY] Taxonomy Overlap: shared + new == DeBERTa total (1382) | Exp: 1382 | Act: 1382
-[PASS] [SELF-CONSISTENCY] Taxonomy Overlap: shared + fixed == DistilBERT total (1901) | Exp: 1901 | Act: 1901
-[PASS] [SELF-CONSISTENCY] deberta_ofat_trials.json split == validation       | Exp: validation | Act: validation
-[PASS] [SELF-CONSISTENCY] threshold_curve.json split == validation           | Exp: validation | Act: validation
-[PASS] [INDEPENDENT     ] Per-Row CSV: DeBERTa Raw errors                    | Exp: 1382 | Act: 1382
-[PASS] [INDEPENDENT     ] Per-Row CSV: DeBERTa Norm Dynamic errors           | Exp: 1361 | Act: 1361
-[PASS] [INDEPENDENT     ] DeBERTa Norm Static errors (canonical run)         | Exp: 1356 | Act: 1356
-[PASS] [INDEPENDENT     ] DeBERTa: ROC-AUC (CSV recomputed)                  | Exp: 0.9957 | Act: 0.9957
-[PASS] [INDEPENDENT     ] Length Slices CSV: Long reviews DistilBERT errors  | Exp: 806 | Act: 806
-[PASS] [INDEPENDENT     ] Length Slices CSV: Long reviews DeBERTa errors     | Exp: 528 | Act: 528
-[PASS] [INDEPENDENT     ] Multi-Domain Benchmark: Yelp + IMDb total N        | Exp: 3616 | Act: 3616
-[PASS] [INDEPENDENT     ] Multi-Domain Benchmark: DistilBERT missed complaints | Exp: 557 | Act: 557
-[PASS] [INDEPENDENT     ] Multi-Domain Benchmark: DeBERTa missed complaints  | Exp: 103 | Act: 103
-
-====================================================================================
-  Total Checks Run: 35
-  [SUCCESS] ALL 35 INTEGRITY CHECKS PASSED (0 DISCREPANCIES)!
-  Log written to A:\DS-Review-AI\DISCREPANCIES.md
-====================================================================================
+﻿====================================================================================
+  RUNNING STRICT SECTION 5 EXPORT & INDEPENDENT RECOMPUTATION CHECKS
+====================================================================================
+[PASS] [SELF-CONSISTENCY] DeBERTa: CM sum == eval_set.n                      | Exp: 72846 | Act: 72846
+[PASS] [SELF-CONSISTENCY] DeBERTa: tn + fp == n_negative                     | Exp: 11372 | Act: 11372
+[PASS] [SELF-CONSISTENCY] DeBERTa: fn + tp == n_positive                     | Exp: 61474 | Act: 61474
+[PASS] [SELF-CONSISTENCY] DeBERTa: Accuracy recomputed                       | Exp: 0.9814 | Act: 0.9814
+[PASS] [SELF-CONSISTENCY] DeBERTa: Macro-F1 recomputed                       | Exp: 0.9646 | Act: 0.9646
+[PASS] [SELF-CONSISTENCY] DeBERTa: Neg Recall recomputed                     | Exp: 0.9391 | Act: 0.9391
+[PASS] [SELF-CONSISTENCY] DeBERTa: Neg Precision recomputed                  | Exp: 0.9415 | Act: 0.9415
+[PASS] [INDEPENDENT     ] DistilBERT 281k: Accuracy (CSV recomputed)         | Exp: 0.9739 | Act: 0.9739
+[PASS] [INDEPENDENT     ] DistilBERT 281k: Macro-F1                          | Exp: 0.9504 | Act: 0.9504
+[PASS] [INDEPENDENT     ] DistilBERT 281k: ROC-AUC (CSV recomputed)          | Exp: 0.993 | Act: 0.993
+[PASS] [INDEPENDENT     ] DistilBERT 281k: FP count (CSV recomputed)         | Exp: 980 | Act: 980
+[PASS] [INDEPENDENT     ] DistilBERT 281k: FN count (CSV recomputed)         | Exp: 921 | Act: 921
+[PASS] [INDEPENDENT     ] DistilBERT 281k: Total errors (CSV recomputed)     | Exp: 1901 | Act: 1901
+[PASS] [INDEPENDENT     ] Linear SVM: Accuracy                               | Exp: 0.9617 | Act: 0.9617
+[PASS] [INDEPENDENT     ] Linear SVM: Macro-F1                               | Exp: 0.9253 | Act: 0.9253
+[PASS] [INDEPENDENT     ] Linear SVM: FP count                               | Exp: 1769 | Act: 1769
+[PASS] [INDEPENDENT     ] Linear SVM: FN count                               | Exp: 1020 | Act: 1020
+[PASS] [SELF-CONSISTENCY] Omni platforms sum to Omni total (453,878)         | Exp: 453878 | Act: 453878
+[PASS] [INDEPENDENT     ] Taxonomy DeBERTa: n_errors_total == 1382           | Exp: 1382 | Act: 1382
+[PASS] [SELF-CONSISTENCY] Taxonomy DeBERTa: categories sum to 1382           | Exp: 1382 | Act: 1382
+[PASS] [INDEPENDENT     ] Taxonomy DistilBERT comparison: n_errors_total == 1901 | Exp: 1901 | Act: 1901
+[PASS] [SELF-CONSISTENCY] Taxonomy DistilBERT: categories sum to 1901        | Exp: 1901 | Act: 1901
+[PASS] [SELF-CONSISTENCY] Taxonomy Overlap: shared + new == DeBERTa total (1382) | Exp: 1382 | Act: 1382
+[PASS] [SELF-CONSISTENCY] Taxonomy Overlap: shared + fixed == DistilBERT total (1901) | Exp: 1901 | Act: 1901
+[PASS] [SELF-CONSISTENCY] deberta_ofat_trials.json split == validation       | Exp: validation | Act: validation
+[PASS] [INDEPENDENT     ] Per-Row CSV: DeBERTa Raw errors                    | Exp: 1382 | Act: 1382
+[PASS] [INDEPENDENT     ] Per-Row CSV: DeBERTa Norm Dynamic errors           | Exp: 1361 | Act: 1361
+[PASS] [INDEPENDENT     ] DeBERTa Norm Static errors (canonical run)         | Exp: 1356 | Act: 1356
+[PASS] [INDEPENDENT     ] DeBERTa: ROC-AUC (CSV recomputed)                  | Exp: 0.9957 | Act: 0.9957
+[PASS] [INDEPENDENT     ] Length Slices CSV: Long reviews DistilBERT errors  | Exp: 806 | Act: 806
+[PASS] [INDEPENDENT     ] Length Slices CSV: Long reviews DeBERTa errors     | Exp: 528 | Act: 528
+[PASS] [INDEPENDENT     ] Multi-Domain Benchmark: Yelp + IMDb total N        | Exp: 3616 | Act: 3616
+[PASS] [INDEPENDENT     ] Multi-Domain Benchmark: DistilBERT missed complaints | Exp: 557 | Act: 557
+[PASS] [INDEPENDENT     ] Multi-Domain Benchmark: DeBERTa missed complaints  | Exp: 103 | Act: 103
+
+====================================================================================
+  Total Checks Run: 34
+  [SUCCESS] ALL 34 INTEGRITY CHECKS PASSED (0 DISCREPANCIES)!
+  Log written to A:\DS-Review-AI\DISCREPANCIES.md
+====================================================================================

@@ -1,0 +1,28 @@
+{
+  "active_models": {
+    "deberta": {
+      "model_id": "microsoft/deberta-v3-base",
+      "display_name": "DeBERTa-v3-Omni (#1 Champion)",
+      "checkpoint_dir": "models/deberta_omni_v1",
+      "weights_file": "best_model.pt",
+      "class_weights": [1.0, 1.0],
+      "train_n": 323461,
+      "temperature": 1.35,
+      "in_training_mix": ["Amazon Fine Food", "Flipkart Retail", "Yelp Dining", "IMDb Cinema"],
+      "eval_set_id": "amazon_test",
+      "eval_set_n": 72846
+    },
+    "distilbert": {
+      "model_id": "distilbert-base-uncased",
+      "display_name": "DistilBERT 281k (#2 Runner-Up)",
+      "checkpoint_dir": "notebooks/artifacts/distilbert_full281k",
+      "weights_file": "model.safetensors",
+      "class_weights": [1.0, 1.0],
+      "train_n": 281271,
+      "temperature": 1.654,
+      "in_training_mix": ["Amazon Fine Food"],
+      "eval_set_id": "amazon_test",
+      "eval_set_n": 72846
+    }
+  }
+}

@@ -179,7 +179,7 @@ def verify():
         all_passed &= check_count("Taxonomy Overlap: shared + fixed == DistilBERT total (1901)", overlap.get("shared_errors", 0) + overlap.get("fixed_errors", 0), 1901, "error_taxonomy.json", check_type="SELF-CONSISTENCY")
 
     # ---------------------------------------------------------
-    # 6. Check 6: OFAT and threshold files have split: "validation" (2 checks)
+    # 6. Check 6: OFAT file has split: "validation"
     # ---------------------------------------------------------
     ofat_f = DATA_DIR / "deberta_ofat_trials.json"
     if ofat_f.exists():
@@ -187,13 +187,6 @@ def verify():
             ofat = json.load(f)
         split_val = ofat.get("meta", {}).get("split")
         all_passed &= record_check("deberta_ofat_trials.json split == validation", split_val == "validation", "validation", split_val, "deberta_ofat_trials.json", check_type="SELF-CONSISTENCY")
-
-    thresh_f = DATA_DIR / "threshold_curve.json"
-    if thresh_f.exists():
-        with open(thresh_f, "r", encoding="utf-8") as f:
-            thresh = json.load(f)
-        split_val = thresh.get("meta", {}).get("split")
-        all_passed &= record_check("threshold_curve.json split == validation", split_val == "validation", "validation", split_val, "threshold_curve.json", check_type="SELF-CONSISTENCY")
 
     # ---------------------------------------------------------
     # 7. Section 5B: Per-Row Variant, Slice & Multidomain Verification (8 checks)

@@ -1,16 +1,16 @@
-﻿[AST Linter] Scanning 14 source files in src/ ...
-Γ£à check-literals passed: 0 AST violations in src/.
-
-[36mvite v5.4.21 [32mbuilding for production...[36m[39m
-transforming...
-[32mΓ£ô[39m 2737 modules transformed.
-rendering chunks...
-computing gzip size...
-[2mdist/[22m[32mindex.html                 [39m[1m[2m  1.14 kB[22m[1m[22m[2m Γöé gzip:   0.57 kB[22m
-[2mdist/[22m[35massets/index-Dm8v27M2.css  [39m[1m[2m 25.02 kB[22m[1m[22m[2m Γöé gzip:   5.15 kB[22m
-[2mdist/[22m[36massets/vendor-Dkuv8k5z.js  [39m[1m[2m  0.06 kB[22m[1m[22m[2m Γöé gzip:   0.07 kB[22m
-[2mdist/[22m[36massets/icons-BjyfU5aQ.js   [39m[1m[2m 15.52 kB[22m[1m[22m[2m Γöé gzip:   3.54 kB[22m
-[2mdist/[22m[36massets/index-9SvfA48N.js   [39m[1m[2m114.60 kB[22m[1m[22m[2m Γöé gzip:  25.07 kB[22m
-[2mdist/[22m[36massets/motion-DFmsXGvU.js  [39m[1m[2m122.39 kB[22m[1m[22m[2m Γöé gzip:  40.42 kB[22m
-[2mdist/[22m[36massets/charts-hEcJSM9e.js  [39m[1m[2m519.03 kB[22m[1m[22m[2m Γöé gzip: 149.08 kB[22m
-[32mΓ£ô built in 4.00s[39m
+﻿[AST Linter] Scanning 14 source files in src/ ...
+Γ£à check-literals passed: 0 AST violations in src/.
+
+[36mvite v5.4.21 [32mbuilding for production...[36m[39m
+transforming...
+[32mΓ£ô[39m 2737 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32mindex.html                 [39m[1m[2m  1.16 kB[22m[1m[22m[2m Γöé gzip:   0.58 kB[22m
+[2mdist/[22m[35massets/index-ChEw24lL.css  [39m[1m[2m 25.58 kB[22m[1m[22m[2m Γöé gzip:   5.33 kB[22m
+[2mdist/[22m[36massets/vendor-Dkuv8k5z.js  [39m[1m[2m  0.06 kB[22m[1m[22m[2m Γöé gzip:   0.07 kB[22m
+[2mdist/[22m[36massets/icons-CAi6Xc7n.js   [39m[1m[2m 16.54 kB[22m[1m[22m[2m Γöé gzip:   3.75 kB[22m
+[2mdist/[22m[36massets/motion-DFmsXGvU.js  [39m[1m[2m122.39 kB[22m[1m[22m[2m Γöé gzip:  40.42 kB[22m
+[2mdist/[22m[36massets/index-DlmJe-EV.js   [39m[1m[2m126.45 kB[22m[1m[22m[2m Γöé gzip:  28.47 kB[22m
+[2mdist/[22m[36massets/charts-hEcJSM9e.js  [39m[1m[2m519.03 kB[22m[1m[22m[2m Γöé gzip: 149.08 kB[22m
+[32mΓ£ô built in 10.06s[39m

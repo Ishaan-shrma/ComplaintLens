@@ -1,11 +1,3 @@
-﻿node.exe : npm notice run review-intelligence-showcase@0.2.0 check:literals
-At line:1 char:1
-+ & "C:\Program Files\nodejs/node.exe" "C:\Users\Ishaan\AppData\Roaming ...
-+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (npm notice run ... check:literals:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
- 
-npm notice run node scripts/check-literals.js
-[AST Linter] Scanning 14 source files in src/ ...
-Γ£à check-literals passed: 0 AST violations in src/.
-
+﻿[AST Linter] Scanning 14 source files in src/ ...
+Γ£à check-literals passed: 0 AST violations in src/.
+

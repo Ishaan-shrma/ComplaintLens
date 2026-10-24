@@ -139,9 +139,40 @@ def _apply_filters(df: pd.DataFrame, filters: dict):
     return df, (" and ".join(parts) if parts else "no filters (all reviews)")
 
 
-def get_review_kpi(metric_name: str, filters: dict = None) -> dict:
+METRIC_ALIASES = {
+    "count": "review_count",
+    "review_count": "review_count",
+    "average rating": "average_rating",
+    "avg rating": "average_rating",
+    "average_rating": "average_rating",
+    "sentiment share": "sentiment_distribution",
+    "sentiment_share": "sentiment_distribution",
+    "sentiment_distribution": "sentiment_distribution",
+    "negative-review rate": "negative_review_rate",
+    "negative_review_rate": "negative_review_rate",
+    "helpfulness ratio": "helpfulness_ratio",
+    "helpfulness_ratio": "helpfulness_ratio",
+    "positive_pct": "positive_pct",
+    "negative_pct": "negative_pct",
+    "neutral_pct": "neutral_pct",
+}
+
+GROUP_BY_MAP = {
+    "product": "ProductId",
+    "product_id": "ProductId",
+    "ProductId": "ProductId",
+    "year": "review_year",
+    "review_year": "review_year",
+    "rating": "Score",
+    "score": "Score",
+    "Score": "Score",
+}
+
+
+def get_review_kpi(metric_name: str, filters: dict = None, group_by: str = None) -> dict:
     """Approved KPI computed with pandas on the cleaned dataset or multi-platform corpus."""
-    if metric_name not in KPI_DEFINITIONS:
+    canon_metric = METRIC_ALIASES.get(str(metric_name).lower().strip(), metric_name)
+    if canon_metric not in KPI_DEFINITIONS:
         return {"error": f"'{metric_name}' is not an approved metric.", "approved_metrics": sorted(KPI_DEFINITIONS)}
     try:
         filters = _validate_filters(filters)
@@ -150,64 +181,116 @@ def get_review_kpi(metric_name: str, filters: dict = None) -> dict:
 
     # Multi-platform fast path
     plat = filters.get("platform")
-    if plat and plat in PLATFORM_METRICS:
+    if plat and plat in PLATFORM_METRICS and not group_by:
         p_data = PLATFORM_METRICS[plat]
         n = p_data["review_count"]
         sent_filter = filters.get("sentiment")
         ds_name = p_data["dataset"]
         if sent_filter:
             sub_count = p_data.get(sent_filter, 0)
-            val = sub_count if metric_name == "review_count" else round(sub_count / n * 100, 2)
+            val = sub_count if canon_metric == "review_count" else round(sub_count / n * 100, 2)
             return {
-                "metric": metric_name, "filters": filters, "rows_used": sub_count,
-                "definition": KPI_DEFINITIONS[metric_name], "dataset": ds_name,
-                "query": f"{metric_name} over {plat} where sentiment == '{sent_filter}'", "value": val
+                "metric": canon_metric, "filters": filters, "rows_used": sub_count,
+                "definition": KPI_DEFINITIONS[canon_metric], "dataset": ds_name,
+                "query": f"{canon_metric} over {plat} where sentiment == '{sent_filter}'", "value": val
             }
         val = None
-        if metric_name == "review_count":
+        if canon_metric == "review_count":
             val = n
-        elif metric_name == "average_rating":
+        elif canon_metric == "average_rating":
             val = p_data["average_rating"]
-        elif metric_name == "sentiment_distribution":
+        elif canon_metric == "sentiment_distribution":
             val = {
                 "positive_pct": p_data["positive_pct"],
                 "negative_pct": p_data["negative_pct"],
                 "neutral_pct": p_data["neutral_pct"],
                 "counts": {"positive": p_data["positive"], "negative": p_data["negative"], "neutral": p_data["neutral"]}
             }
-        elif metric_name in ("positive_pct", "negative_pct", "neutral_pct"):
-            val = p_data[metric_name]
-        elif metric_name == "negative_review_rate":
+        elif canon_metric in ("positive_pct", "negative_pct", "neutral_pct"):
+            val = p_data[canon_metric]
+        elif canon_metric == "negative_review_rate":
             val = p_data["negative_review_rate"]
-        elif metric_name == "helpfulness_ratio":
+        elif canon_metric == "helpfulness_ratio":
             val = 77.94 if plat == "amazon" else None
         return {
-            "metric": metric_name, "filters": filters, "rows_used": n,
-            "definition": KPI_DEFINITIONS[metric_name], "dataset": ds_name,
-            "query": f"{metric_name} over {plat} platform corpus", "value": val
+            "metric": canon_metric, "filters": filters, "rows_used": n,
+            "definition": KPI_DEFINITIONS[canon_metric], "dataset": ds_name,
+            "query": f"{canon_metric} over {plat} platform corpus", "value": val
         }
 
     sub, where = _apply_filters(data.reviews(), filters)
     n = len(sub)
-    out = {"metric": metric_name, "filters": filters, "rows_used": n, "definition": KPI_DEFINITIONS[metric_name],
-           "dataset": DATASET_NOTE, "query": f"{metric_name} over rows where {where}", "value": None}
+    out = {"metric": canon_metric, "filters": filters, "rows_used": n, "definition": KPI_DEFINITIONS[canon_metric],
+           "dataset": DATASET_NOTE, "query": f"{canon_metric} over rows where {where}", "value": None}
     if n == 0:
         out["note"] = "No reviews match these filters."
         return out
+
+    # Grouped aggregation path (pandas operations only)
+    if group_by:
+        gb_clean = str(group_by).strip().lower()
+        if gb_clean not in GROUP_BY_MAP:
+            return {"error": f"Invalid group_by '{group_by}'. Supported: product, year, rating.",
+                    "supported_group_by": ["product", "year", "rating"]}
+        col = GROUP_BY_MAP[gb_clean]
+        if col not in sub.columns:
+            return {"error": f"Column '{col}' not available for grouping."}
+
+        grouped_res = {}
+        for g_val, g_df in sub.groupby(col):
+            g_n = len(g_df)
+            if g_n == 0:
+                continue
+            if canon_metric == "review_count":
+                grouped_res[str(g_val)] = g_n
+            elif canon_metric == "average_rating":
+                grouped_res[str(g_val)] = round(float(g_df["Score"].mean()), 3)
+            elif canon_metric in ("sentiment_distribution", "sentiment_share"):
+                g_counts = g_df["sentiment_label"].value_counts()
+                g_pos = int(g_counts.get("positive", 0))
+                g_neg = int(g_counts.get("negative", 0))
+                g_neu = int(g_counts.get("neutral", 0))
+                grouped_res[str(g_val)] = {
+                    "positive_pct": round(g_pos / g_n * 100, 2),
+                    "negative_pct": round(g_neg / g_n * 100, 2),
+                    "neutral_pct": round(g_neu / g_n * 100, 2),
+                    "n": g_n
+                }
+            elif canon_metric == "negative_review_rate":
+                g_counts = g_df["sentiment_label"].value_counts()
+                g_pos = int(g_counts.get("positive", 0))
+                g_neg = int(g_counts.get("negative", 0))
+                denom = g_pos + g_neg
+                grouped_res[str(g_val)] = round(g_neg / denom * 100, 2) if denom else None
+            elif canon_metric == "helpfulness_ratio":
+                if "helpfulness_ratio" in g_df.columns:
+                    voted = g_df["helpfulness_ratio"].dropna()
+                    grouped_res[str(g_val)] = round(float(voted.mean()), 4) if len(voted) else None
+                else:
+                    grouped_res[str(g_val)] = None
+            elif canon_metric in ("positive_pct", "negative_pct", "neutral_pct"):
+                g_target = {"positive_pct": "positive", "negative_pct": "negative", "neutral_pct": "neutral"}[canon_metric]
+                grouped_res[str(g_val)] = round(int((g_df["sentiment_label"] == g_target).sum()) / g_n * 100, 2)
+
+        out["group_by"] = gb_clean
+        out["grouped_values"] = grouped_res
+        out["query"] = f"{canon_metric} grouped by {gb_clean} over rows where {where}"
+        return out
+
     counts = sub["sentiment_label"].value_counts()
     pos, neg, neu = (int(counts.get(k, 0)) for k in LABELS)
-    if metric_name == "review_count":
+    if canon_metric == "review_count":
         out["value"] = n
-    elif metric_name == "average_rating":
+    elif canon_metric == "average_rating":
         out["value"] = round(float(sub["Score"].mean()), 3)
-    elif metric_name == "sentiment_distribution":
+    elif canon_metric == "sentiment_distribution":
         out["value"] = {"positive_pct": round(pos / n * 100, 2), "negative_pct": round(neg / n * 100, 2),
                         "neutral_pct": round(neu / n * 100, 2), "counts": {"positive": pos, "negative": neg, "neutral": neu}}
-    elif metric_name in ("positive_pct", "negative_pct", "neutral_pct"):
-        out["value"] = round({"positive_pct": pos, "negative_pct": neg, "neutral_pct": neu}[metric_name] / n * 100, 2)
-    elif metric_name == "negative_review_rate":
+    elif canon_metric in ("positive_pct", "negative_pct", "neutral_pct"):
+        out["value"] = round({"positive_pct": pos, "negative_pct": neg, "neutral_pct": neu}[canon_metric] / n * 100, 2)
+    elif canon_metric == "negative_review_rate":
         out["value"] = round(neg / (pos + neg) * 100, 2) if (pos + neg) else None
-    elif metric_name == "helpfulness_ratio":
+    elif canon_metric == "helpfulness_ratio":
         if "helpfulness_ratio" not in sub.columns:
             out["note"] = "The dataset has no helpfulness_ratio column."
         else:
@@ -372,6 +455,12 @@ def explain_result(result: dict) -> str:
                 f"{df['ProductId'].nunique()} product(s). Average rating of these reviews: {df['Score'].mean():.2f}/5; "
                 f"star-based labels: {mix_text}. This describes only the retrieved examples from the indexed sample, "
                 f"not the whole dataset.")
+    if "grouped_values" in result:
+        scope = result["query"].split("where", 1)[-1].strip()
+        items = list(result["grouped_values"].items())[:5]
+        summary_preview = ", ".join(f"{k}: {v}" for k, v in items)
+        return (f"{result['metric']} grouped by {result.get('group_by')} across {result['rows_used']:,} reviews ({scope}). "
+                f"Results ({len(result['grouped_values'])} groups): {summary_preview}{'...' if len(result['grouped_values']) > 5 else ''}.")
     if "metric" in result:
         if result.get("value") is None:
             return result.get("note", "The metric could not be computed for these filters.")

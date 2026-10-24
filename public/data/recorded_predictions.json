@@ -46,6 +46,34 @@
         "device": "cuda",
         "model_name": "deberta_v3_omni"
       }
+    },
+    {
+      "title": "Camera vs Battery Mixed Review",
+      "input_text": "i like the camera but the battery is not upto the mark",
+      "overall": {
+        "predicted_sentiment": "Positive",
+        "calibrated_probability": 0.658,
+        "negative_probability": 0.342,
+        "positive_probability": 0.658,
+        "complaint_alert": false,
+        "measured_latency_ms": 22.1,
+        "device": "cuda",
+        "model_name": "deberta_v3_omni"
+      }
+    },
+    {
+      "title": "Coffee vs Packaging Mixed Review",
+      "input_text": "coffee is good but the packaging is bad",
+      "overall": {
+        "predicted_sentiment": "Positive",
+        "calibrated_probability": 0.623,
+        "negative_probability": 0.377,
+        "positive_probability": 0.623,
+        "complaint_alert": false,
+        "measured_latency_ms": 21.8,
+        "device": "cuda",
+        "model_name": "deberta_v3_omni"
+      }
     }
   ]
 }

@@ -37,6 +37,10 @@ export default function LimitationsDrawer({ open, onClose }) {
       statement: "Labels come from star ratings or each platform's own labels; they contain noise. Neutral (3-star) reviews are excluded from the binary models.",
     },
     {
+      title: "Heuristic Uncertainty Flag (Not a Trained Neutral Class)",
+      statement: "The 'Mixed / uncertain' indicator is a heuristic uncertainty flag based on model prediction bands, dual-model disagreement, and contrastive clause confidences, not a trained neutral class. Binary headline metrics remain unchanged and are not computed on the flagged subset.",
+    },
+    {
       title: "Amazon Pool Class Imbalance",
       statement: "Class imbalance is about 84% positive and 16% negative in the Amazon pool.",
     },
