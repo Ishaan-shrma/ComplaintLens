@@ -10,3 +10,7 @@
 *.npy binary
 *.png binary
 *.pdf binary
+
+# Shell scripts (enforce LF) and Windows batch files (enforce CRLF)
+*.sh text eol=lf
+*.bat text eol=crlf

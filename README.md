@@ -58,8 +58,8 @@ All metrics below are copied directly from the repository's immutable evaluation
 ## 4. Quickstart
 
 ### Prerequisites
-- **Python:** 3.10–3.12 (Pinned to Python 3.11/3.12; PyTorch lacks official binary wheels for 3.14).
-- **Node.js:** v18+ and npm.
+- **Python:** 3.10–3.12 (Python 3.10, 3.11, or 3.12 required; PyTorch lacks pre-built binary wheels for Python 3.14).
+- **Node.js:** `>=18` (tested with Node 20 LTS; see `.nvmrc`) and npm.
 - **Operating System:** Windows, macOS, or Linux.
 
 ### Setup and Launch
@@ -80,7 +80,18 @@ run_demo.bat
 chmod +x run_demo.sh
 ./run_demo.sh
 ```
-The launcher starts the FastAPI backend on `http://127.0.0.1:8000` and serves the frontend on `http://localhost:5173`.
+The launcher verifies your Python and Node environments, creates the virtual environment, installs dependencies via `npm ci` and `pip`, starts the FastAPI backend on `http://127.0.0.1:8000`, and serves the frontend on `http://localhost:5173`.
+
+### Troubleshooting
+- **Wrong Python version:** ComplaintLens requires Python 3.10–3.12. If `run_demo.bat` or `run_demo.sh` reports `ComplaintLens needs Python 3.10-3.12 (found X)`, ensure Python 3.10, 3.11, or 3.12 is selected in your PATH or virtual environment.
+- **Port already in use:** By default, the FastAPI backend listens on port 8000 and the Vite frontend listens on port 5173. If either port is occupied:
+  - On Windows: find the blocking process with `netstat -ano | findstr :8000` and terminate it with `taskkill /PID <PID> /F`.
+  - On Linux / macOS: find and terminate it with `lsof -i :8000` and `kill -9 <PID>`.
+  - You can also pass `--port <PORT>` to uvicorn in `server/app.py`.
+- **PowerShell execution policy:** On Windows, if activating `.venv\Scripts\Activate.ps1` produces a script execution restriction error (`running scripts is disabled on this system`), bypass it for your current terminal session:
+  ```powershell
+  Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+  ```
 
 ---
 
@@ -135,3 +146,12 @@ The AI Review Analyst (`src/agent/`) implements defense-in-depth security polici
 - **Provider Adapters:** Supports local offline LLMs via [Ollama](https://ollama.ai) (`LLM_PROVIDER=ollama`) or cloud providers (`LLM_PROVIDER=api`).
 - **Citation Requirement:** Every analytical claim must cite specific indexed review IDs.
 - **Prompt Injection Defense:** Input prompts attempting SQL injection (`DROP TABLE`), instruction overrides (`ignore previous instructions`), or secret exfiltration are intercepted with HTTP 403 Forbidden.
+
+---
+
+## 8. Reproducing from Scratch
+
+Some analysis scripts have a ROOT path set for the author's machine; edit it before running them.
+
+All verification benchmarks, test suites, and application services (`scripts/verify_export.py`, `tests/test_agent.py`, `npm run build`, and `server/app.py`) resolve paths dynamically relative to the repository root and run out of the box on any system.
+

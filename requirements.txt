@@ -14,7 +14,6 @@ sentence-transformers>=2.5.0
 faiss-cpu>=1.8.0
 
 # Dashboard & Visualization
-streamlit>=1.32.0
 plotly>=5.14.0
 
 # Testing Suite (Week 6 Guardrails)
