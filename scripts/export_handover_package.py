@@ -27,7 +27,6 @@ ITEMS_TO_COPY = [
     ("public", "public"),
     ("scripts", "scripts"),
     ("tests", "tests"),
-    ("dashboards", "dashboards"),
     ("presentations", "presentations"),
     ("reports", "reports"),
     
