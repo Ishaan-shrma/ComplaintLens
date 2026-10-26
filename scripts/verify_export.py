@@ -21,7 +21,7 @@ from sklearn.metrics import roc_auc_score
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = PROJECT_ROOT / "public" / "data"
 REPORTS_DIR = PROJECT_ROOT / "reports"
-DISC_PATH = PROJECT_ROOT / "DISCREPANCIES.md"
+DISC_PATH = PROJECT_ROOT / "docs" / "DISCREPANCIES.md"
 
 CHECKS = []
 

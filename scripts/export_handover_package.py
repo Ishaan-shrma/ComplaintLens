@@ -63,8 +63,8 @@ ITEMS_TO_COPY = [
     ("package.json", "package.json"),
     ("requirements.txt", "requirements.txt"),
     ("README.md", "README.md"),
-    ("report.md", "report.md"),
-    ("DISCREPANCIES.md", "DISCREPANCIES.md"),
+    ("docs/report.md", "docs/report.md"),
+    ("docs/DISCREPANCIES.md", "docs/DISCREPANCIES.md"),
     ("ML_Systems_Technical_Defense_Manual.pdf", "ML_Systems_Technical_Defense_Manual.pdf"),
     ("vite.config.js", "vite.config.js"),
     ("tailwind.config.js", "tailwind.config.js"),
@@ -129,7 +129,8 @@ README_HANDOVER = '''# DS Group Review Intelligence Prototype — Project Handov
 - `notebooks/`: All 7 documented Jupyter experiment notebooks and DistilBERT model weights.
 - `data/`: Cleaned review datasets (`reviews_cleaned.csv`, `omni_corpus.csv`) and raw Kaggle input.
 - `reports/`: Complete statistical verification reports, per-row predictions CSV, and multi-domain benchmarks.
-- `report.md`: Full 45-day internship work log and results summary.
+- `docs/report.md`: Full 45-day internship work log and results summary.
+- `docs/DISCREPANCIES.md`: Discrepancy log adhering to Rule R3.
 - `ML_Systems_Technical_Defense_Manual.pdf`: Technical architecture and model defense guide.
 '''
 

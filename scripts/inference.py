@@ -18,7 +18,7 @@ Expected Output (JSON):
     }
 
 Usage Example:
-    python inference.py --text "This coffee is absolutely fantastic!"
+    python scripts/inference.py --text "This coffee is absolutely fantastic!"
 """
 
 import argparse
@@ -27,7 +27,7 @@ import sys
 from pathlib import Path
 
 # Ensure the src module can be found when run from the command line
-PROJECT_ROOT = Path(__file__).resolve().parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.append(str(PROJECT_ROOT))
 
