@@ -40,11 +40,21 @@ notebooks/artifacts/*.pkl
 DS_GROUP_INTERNSHIP_FINAL_REPORT.pdf
 *.pdf
 
+# Heavy audit CSVs (>35 MB, reproducible via scripts/compute_taxonomy_deberta.py)
+reports/taxonomy_full_audit_deberta.csv
+reports/taxonomy_full_audit.csv
+
 # Scratch, runs, archives & logs
 scratch/
 runs/
 archive/
 *.log
+logs/*
+!logs/verify_export.txt
+!logs/pytest_agent.txt
+!logs/curl_health.txt
+!logs/check_literals.txt
+!logs/npm_build.txt
 
 # Distribution & node modules
 node_modules/

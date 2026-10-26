@@ -1,2 +1,12 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Binary files - preserve exact byte-for-byte fidelity (no line-ending conversion)
+*.npz binary
+*.joblib binary
+*.pt binary
+*.safetensors binary
+*.pkl binary
+*.npy binary
+*.png binary
+*.pdf binary
