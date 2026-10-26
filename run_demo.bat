@@ -1,12 +1,12 @@
 @echo off
 setlocal enabledelayedexpansion
-title Review Intelligence Prototype - Launcher
+title ComplaintLens - Launcher
 
 set "PROJECT_DIR=%~dp0"
 cd /d "%PROJECT_DIR%"
 
 echo ======================================================================
-echo   Review Intelligence Prototype - Setup and Live Launcher
+echo   ComplaintLens - Setup and Live Launcher
 echo ======================================================================
 echo.
 

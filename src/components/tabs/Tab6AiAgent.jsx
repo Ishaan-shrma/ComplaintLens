@@ -230,7 +230,7 @@ export default function Tab6AiAgent() {
         </div>
 
         <h2 className="text-xl md:text-2xl font-bold tracking-tight text-slate-100 font-mono">
-          Review Intelligence &amp; Root-Cause Synthesis Prototype
+          ComplaintLens &amp; Root-Cause Synthesis Prototype
         </h2>
         <p className="text-xs text-slate-400 mt-1">
           Read-only analytical prototype querying indexed customer reviews. Answers cite review IDs; verify against the evidence.

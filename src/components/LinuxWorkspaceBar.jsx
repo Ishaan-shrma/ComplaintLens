@@ -54,7 +54,7 @@ export default function LinuxWorkspaceBar({
           <div className="flex items-center gap-2">
             <Terminal className="w-4 h-4 text-indigo-400 shrink-0" />
             <h1 className="font-mono text-xs font-bold tracking-tight text-slate-100">
-              Review Intelligence
+              ComplaintLens
             </h1>
           </div>
           <div className="flex items-center justify-between">

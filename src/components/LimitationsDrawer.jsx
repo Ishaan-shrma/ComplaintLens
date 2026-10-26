@@ -71,7 +71,7 @@ export default function LimitationsDrawer({ open, onClose }) {
             <div className="flex items-center gap-2">
               <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
               <span className="font-mono text-[11px] uppercase tracking-wider text-slate-300">
-                Review Intelligence Prototype (Read-Only)
+                ComplaintLens (Read-Only)
               </span>
               <span className="text-slate-700">|</span>
               <span className="text-[11px] text-slate-500 hidden sm:inline">

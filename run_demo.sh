@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# Review Intelligence Prototype - Setup & Live Launcher (macOS / Linux)
+# ComplaintLens - Setup & Live Launcher (macOS / Linux)
 # ==============================================================================
 
 set -e
@@ -8,7 +8,7 @@ PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$PROJECT_DIR"
 
 echo "======================================================================"
-echo "  Review Intelligence Prototype - Setup and Live Launcher"
+echo "  ComplaintLens - Setup and Live Launcher"
 echo "======================================================================"
 echo ""
 

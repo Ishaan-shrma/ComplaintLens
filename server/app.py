@@ -21,8 +21,8 @@ sys.path.insert(0, str(ROOT))
 from src.agent import config
 
 app = FastAPI(
-    title="Review Intelligence Prototype API (Read-Only)",
-    description="Read-only prediction, semantic search, and agent endpoints for Review Intelligence Prototype.",
+    title="ComplaintLens API (Read-Only)",
+    description="Read-only prediction, semantic search, and agent endpoints for ComplaintLens.",
     version="0.2.0",
 )
 app.add_middleware(
@@ -285,7 +285,7 @@ def health() -> dict[str, Any]:
 
     return {
         "status": "ok",
-        "prototype": "Review Intelligence Prototype (Read-Only)",
+        "prototype": "ComplaintLens (Read-Only)",
         "mode": current_mode,
         "data_mode": data_mode,
         "device": dev,

@@ -1,217 +1,137 @@
-# Review Intelligence Prototype
+# ComplaintLens
 
-> **Read-Only Engineering Prototype — Not Validated for Production Deployment.**  
-> Built as part of a 45-day AI/ML Engineering internship at DS Group. All interfaces, analytical endpoints, and conversational capabilities are strictly read-only and operate without write or database mutation handles.
-
----
-
-## 1. System Overview & Limitations
-
-The **Review Intelligence Prototype** is an analytical evaluation system designed to process e-commerce customer feedback, identify product defects, evaluate sentiment signals across multi-domain corpora, and provide evidence-grounded responses to analytical queries.
-
-### System Limitations & Prototype Scope
-- **Not Validated for Production:** This repository is an educational and research prototype. Model calibration, error distributions, and inference latency were measured under experimental constraints and have not been certified for live production traffic.
-- **Corpus Boundaries:** Primary evaluations derive from the SNAP Amazon Fine Food Reviews dataset (1999–2012; 393,890 deduplicated reviews) and the Universal Omni Corpus (453,878 multi-platform reviews). Star ratings are approximate proxies for true customer sentiment.
-- **Read-Only Enforcement:** The architecture strictly prohibits data alteration. A static AST scan of all 5 agent modules confirms zero write calls (`to_csv`, `to_sql`, `INSERT`, `UPDATE`, `DELETE`, `DROP`).
+**Customer Complaint Intelligence & Root-Cause Synthesis Platform**  
+*Read-Only Engineering Prototype — Evaluated on Public Proxy Corpora*
 
 ---
 
-## 2. Architecture & Headline Results
+## 1. System Overview & Engineering Scope
 
-### Dual-Model Architecture
-The prototype compares two transformer architectures evaluated on the same identical benchmark set:
+**ComplaintLens** is an end-to-end analytical intelligence system designed to triage customer feedback, detect product and packaging defects, identify negative sentiment signals across diverse review domains, and synthesize evidence-backed root-cause explanations via a grounded, read-only AI agent.
 
-| Dimension | Primary Model: DeBERTa-v3-Omni | Baseline Comparison: DistilBERT |
-| :--- | :--- | :--- |
-| **Base Backbone** | `microsoft/deberta-v3-base` (86M params, disentangled attention) | `distilbert-base-uncased` (66M params) |
-| **Pooling Mechanism** | Attention-Masked Mean + Max Pooling concatenation | Standard `[CLS]` token pooling |
-| **Classification Head** | 5-Branch Multi-Sample Dropout ($p \in [0.1, 0.5]$) | Single linear classification head |
-| **Training Objective** | Focal Loss ($\gamma = 2.0, \alpha = 0.25$) + Class Weighting | Standard Cross-Entropy Loss |
-| **Calibration Temperature** | $T = 1.35$ | $T = 1.654$ |
-| **Training Corpus Size** | $n = 323,461$ (Multi-platform Omni Corpus) | $n = 281,271$ (Amazon Fine Food train slice) |
-
-### Headline Evaluation Results ($n = 72,846$ Test Set)
-Under identical raw text input evaluation on the held-out test split ($n = 72,846$):
-- **DeBERTa-v3-Omni:** 1,382 classification errors (98.10% accuracy, 0.9646 Macro-F1, ROC-AUC 0.9957)
-- **DistilBERT Baseline:** 1,901 classification errors (97.39% accuracy, 0.9504 Macro-F1, ROC-AUC 0.9930)
-- **Error Reduction:** A reduction of 519 errors (27.3% relative error reduction) associated with the architectural upgrades.
-
-### Critical Methodological Caveats
-1. **Bundled Differences:** The performance difference reflects multiple simultaneous modifications (backbone architecture, pooling, dropout ensemble head, focal loss, and expanded training corpus). It is an aggregate system comparison, not an isolated single-variable ablation.
-2. **Adaptive Test-Set Reuse:** Hyperparameter exploration and threshold tuning were conducted on validation splits derived from the same source pool; subtle overfitting to benchmark quirks cannot be ruled out without subsequent external replication.
-3. **Multi-Platform Omni Corpus Composition:** The Omni corpus (453,878 reviews) combines **three real-world review sources** (Amazon Fine Food, Yelp Restaurant, IMDb Movie reviews) with **one synthetic/adversarial slice** (Flipkart reviews featuring code-mixed Hinglish, informal slang, and high-frequency sarcastic sarcasm) to test model robustness under out-of-domain linguistic stress.
+### Technical Stack & Architecture
+- **Frontend:** React 18 (`^18.2.0`) + Vite 5 + Tailwind CSS (pure JavaScript JSX; zero TypeScript / `.tsx`).
+- **Dashboard Interfaces:** 7 dedicated analytical tabs (`src/components/tabs/`):
+  1. `Tab1Corpus.jsx` — Ingestion funnel, deduplication (174,562 purged), and rating distributions.
+  2. `Tab2ChampionDeberta.jsx` — DeBERTa-v3 champion architecture, disentangled attention, and OFAT hyperparameter tuning.
+  3. `Tab3BenchmarksArchive.jsx` — Multi-model leaderboards, hardware latencies, and threshold curves.
+  4. `Tab4LivePredictor.jsx` — Dual-runtime probability triage and live calibrated inference.
+  5. `Tab5CrossDomain.jsx` — Domain transfer stress tests across Amazon Food, Yelp Dining, and IMDb Cinema.
+  6. `Tab6AiAgent.jsx` — Grounded read-only conversational assistant citing review IDs with guardrails.
+  7. `Tab7ErrorDiagnostics.jsx` — 7-tier heuristic failure taxonomy and error rates by token length.
+  - *Plus:* Slide-over `LimitationsDrawer.jsx` detailing methodological caveats and system boundaries.
+- **Backend:** Python asynchronous FastAPI (`server/app.py`) with thread-safe inference runners and Pydantic validation.
+- **Security & Immutability:** Strict read-only database operations; static AST scans of all agent modules verify zero write calls (`to_csv`, `to_sql`, `INSERT`, `UPDATE`, `DELETE`, `DROP`).
 
 ---
 
-## 3. Quickstart (3 Steps)
+## 2. Headline Results & Audited Benchmarks
+
+All metrics below are copied directly from the repository's immutable evaluation contracts ([`reports/paired_significance_test.json`](reports/paired_significance_test.json), [`reports/deberta_canonical_test_results.json`](reports/deberta_canonical_test_results.json), and [`reports/model_comparison.csv`](reports/model_comparison.csv)) evaluated across the **canonical held-out test split** ($N = 72,846$; 11,372 negative, 61,474 positive):
+
+| Metric / Attribute | Baseline: DistilBERT (281k) | Champion: DeBERTa-v3-Omni | Source Contract |
+| :--- | :--- | :--- | :--- |
+| **Model Backbone** | `distilbert-base-uncased` (66M) | `microsoft/deberta-v3-base` (86M) | `model_manifest.json` |
+| **Training Corpus** | 281,271 Amazon reviews | 323,461 Multi-domain reviews | `public/data/corpus.json` |
+| **Test Accuracy (Raw Text)** | 97.39% | **98.10%** | `reports/paired_significance_test.json` |
+| **Macro-F1 Score** | 0.9504 | **0.9646** | `reports/deberta_canonical_test_results.json` |
+| **ROC-AUC** | 0.9930 | **0.9957** | `reports/deberta_canonical_test_results.json` |
+| **Total Test Errors** | 1,901 | **1,382** (519 fewer errors) | `reports/paired_significance_test.json` |
+| **Missed Complaints (FP)** | 980 | **662** (32.4% fewer missed) | `reports/test_predictions_per_row.csv` |
+| **False Alarms (FN)** | 921 | **720** (21.8% fewer alarms) | `reports/test_predictions_per_row.csv` |
+| **Relative Error Reduction** | *Reference* | **27.3%** (95% CI: [23.97%, 30.51%]) | `reports/paired_significance_test.json` |
+| **McNemar Chi-Square** | *Reference* | **$\chi^2 = 199.2012$** ($p < 0.001$) | `reports/paired_significance_test.json` |
+| **Platt Calibration ($T^*$)** | $T^* = 1.654$ (ECE $0.0382 \to 0.0121$) | $T^* = 1.350$ (ECE $0.0245 \to 0.0084$) | `public/data/calibration.json` |
+
+---
+
+## 3. Methodological Disclosures & Honest Limitations
+
+1. **Uncontrolled Comparison:** DeBERTa was trained on 323,461 multi-domain reviews with multi-sample dropout and focal loss, while DistilBERT was trained on 281,271 Amazon reviews with standard cross-entropy. This is an end-to-end system comparison, not an isolated single-variable ablation.
+2. **Adaptive Test-Set Reuse:** Hyperparameter exploration and temperature calibration were tuned on validation splits from the same source pool; subtle adaptation to benchmark quirks cannot be completely ruled out without external replication.
+3. **Replay Training in Cross-Domain Evaluation:** The multi-domain test evaluation (Yelp Dining and IMDb Cinema corpora) included subsets from the same domains within the training replay mix (32,025 reviews total). It evaluates domain-robustness under multi-task exposure, not zero-shot out-of-domain generalization.
+4. **Heuristic Error Taxonomy:** The 7-class failure mode classification is computed via deterministic regex patterns and lexical rules (e.g., contrastive clause detection, food idioms, rating inversions), not human-annotated ground truth.
+5. **Proxy Data Only:** The system is trained and evaluated entirely on public e-commerce datasets (SNAP Amazon Fine Food Reviews) and synthetic Flipkart templates. It has **not** been trained or validated on proprietary internal consumer reviews of DS Group brands.
+
+---
+
+## 4. Quickstart
 
 ### Prerequisites
-- Python 3.10–3.12 (Pinned to **Python 3.11.9** via `.python-version`; PyTorch wheels are not yet officially released for Python 3.14).
-- Node.js (v18+) and npm.
-- Git.
+- **Python:** 3.10–3.12 (Pinned to Python 3.11/3.12; PyTorch lacks official binary wheels for 3.14).
+- **Node.js:** v18+ and npm.
+- **Operating System:** Windows, macOS, or Linux.
 
-### Step 1: Clone Repository
+### Setup and Launch
 ```bash
-git clone https://github.com/<your-username>/DS-Review-AI.git
+# 1. Clone repository
+git clone https://github.com/<your-org>/DS-Review-AI.git
 cd DS-Review-AI
-```
 
-### Step 2: Configure Environment
-Copy the example configuration to initialize the local `.env`:
-```bash
+# 2. Initialize environment config (defaults to zero-key offline mode)
 cp .env.example .env
-# Windows: copy .env.example .env
+# On Windows: copy .env.example .env
+
+# 3. Launch with automated script
+# On Windows:
+run_demo.bat
+
+# On macOS / Linux:
+chmod +x run_demo.sh
+./run_demo.sh
 ```
-*(By default, `LLM_PROVIDER=none`, enabling zero-dependency deterministic operation without external API keys).*
-
-### Step 3: Launch Prototype
-Run the automated launcher:
-- **Windows:**
-  ```cmd
-  run_demo.bat
-  ```
-- **macOS / Linux:**
-  ```bash
-  chmod +x run_demo.sh
-  ./run_demo.sh
-  ```
-
-The launcher will verify `.venv`, install requirements, install npm dependencies, launch the FastAPI server on `http://127.0.0.1:8000`, and start the Vite UI on `http://localhost:5173`.
+The launcher starts the FastAPI backend on `http://127.0.0.1:8000` and serves the frontend on `http://localhost:5173`.
 
 ---
 
-## 4. Runtime Modes
+## 5. Runtime Modes: Replay vs. Live
 
-The prototype server (`server/app.py`) dynamically detects available local assets and starts in one of two execution modes:
+ComplaintLens supports two operational execution modes determined by local model weight availability:
 
-### Inference Modes (`mode`)
-- **`live` Mode (Weights Present):** Activated when trained model checkpoints are located in `models/`. The server runs real PyTorch tensor forward passes and returns live calibrated probabilities.
-- **`replay` Mode (Weights Absent):** If model weights are missing (e.g., in a fresh repository clone before asset download), the server starts safely in `replay` mode.
-  - **Live prediction for arbitrary new text is strictly DISABLED** with an explicit HTTP 503 response.
-  - Only exact pre-recorded benchmark examples from `public/data/recorded_predictions.json` may be displayed, with each output marked `"pre-recorded": true`.
-  - The server **never returns simulated or invented probabilities** for arbitrary input.
+| Feature | Replay Mode (Zero Downloads) | Live Mode (Weights Present) |
+| :--- | :--- | :--- |
+| **Requirements** | Cloned repository only (no weights needed) | Checkpoint in `models/deberta_omni_v1/best_model.pt` |
+| **UI Experience** | All 7 tabs active, precomputed charts & metrics | All 7 tabs active + real-time inference |
+| **Live Prediction** | Disabled with clear HTTP 503 error | Active GPU/CPU PyTorch forward passes |
+| **Interactive Examples** | Exact pre-recorded benchmarks labeled `"pre-recorded": true` | Arbitrary custom text classification |
+| **Hardware Needed** | Standard laptop CPU; 0 MB model download | NVIDIA GPU recommended (or multi-core CPU) |
 
-### Data Modes (`data_mode`)
-- **`full` Data Mode:** Active when the complete cleaned corpus `data/processed/reviews_cleaned.csv` is present.
-- **`sample` Data Mode:** Active when operating from the committed 5,000-review sample `data/sample/sample_reviews_5k.csv`. In sample mode, all AI agent answers and KPI cards explicitly indicate:  
-  `"(computed on a 5,000-review sample; differs from full-corpus figures)"`.
-
-The active status of both modes is visible via `GET http://127.0.0.1:8000/health`.
-
----
-
-## 5. Hardware Notes
-
-- **GPU Acceleration:** CUDA acceleration is detected automatically. If an NVIDIA GPU with compatible CUDA drivers is present, inference runs on CUDA.
-- **CPU Fallback:** If no GPU is detected, the prototype executes entirely on CPU.
-- **Latency Expectation:** CPU forward passes are significantly slower than GPU execution (typically 150–400ms per inference on CPU versus 15–25ms on GPU). Always time inference latency locally on your specific hardware before quoting speed benchmarks.
-
----
-
-## 6. Large Files Not in This Repository
-
-To comply with Git repository hygiene standards (strictly zero files over 50 MB committed), large binary weights, indices, and raw data are excluded via `.gitignore`:
-
-| Excluded Asset | Expected Location | Size | Description |
-| :--- | :--- | :--- | :--- |
-| **DeBERTa Checkpoint** | `models/deberta_omni_v1/best_model.pt` | ~500 MB | PyTorch weights for primary classifier |
-| **DistilBERT Checkpoint** | `models/sentiment_distilbert/model.safetensors` | ~268 MB | Baseline classifier weights |
-| **FAISS Vector Index** | `models/faiss/faiss_index_with_ids.bin` | ~150 MB | Semantic retrieval index |
-| **Embeddings Array** | `models/embeddings.npy` | 146.5 MB | Precomputed sentence embeddings |
-| **Cleaned Corpus** | `data/processed/reviews_cleaned.csv` | ~280 MB | Full 393k Amazon review corpus |
-| **Raw Kaggle Data** | `data/raw/Reviews.csv` | ~300 MB | Original raw Kaggle export |
-
-### Asset Downloader
-To download model weights and full datasets into their expected locations:
-```bash
-python scripts/download_assets.py
+To inspect current runtime status, query `GET http://127.0.0.1:8000/health`:
+```json
+{
+  "status": "ok",
+  "prototype": "ComplaintLens (Read-Only)",
+  "mode": "replay",
+  "model_ready": false
+}
 ```
-*(Pass `--verify-only` to check SHA-256 integrity of existing local files without downloading. If downloading from a private Hugging Face repository, set `HF_TOKEN` in your environment).*
 
 ---
 
-## 7. Enable Chatbot Answers (Optional)
+## 6. Verification & Automated Test Suites
 
-The AI Review Analyst chat interface operates with three flexible LLM provider adapters:
-
-### a. Default Deterministic Mode (No Key Required)
-Set `LLM_PROVIDER=none` in `.env` (the repository default). The agent answers all valid analytical questions using deterministic template responses constructed strictly from approved tool outputs. No external calls or API keys are required.
-
-### b. Ollama (Local Inference, No External Calls)
-1. Install [Ollama](https://ollama.ai) on your system.
-2. Pull a local model: `ollama pull llama3` (or `mistral`, `qwen2.5`).
-3. Configure `.env`:
-   ```bash
-   LLM_PROVIDER=ollama
-   LLM_MODEL=llama3
-   LLM_BASE_URL=http://localhost:11434
-   ```
-4. Restart the server. In this mode, zero network traffic leaves your local workstation.
-
-### c. External API Providers (Groq, OpenAI, etc.)
-1. Copy `.env.example` to `.env`.
-2. Configure provider settings:
-   ```bash
-   LLM_PROVIDER=api
-   LLM_BASE_URL=https://api.groq.com/openai/v1   # Or provider base URL
-   LLM_MODEL=llama-3.1-8b-instant               # Check provider console for current active names
-   LLM_API_KEY=your_actual_api_key_here
-   ```
-3. Set a strict spending limit in your provider console.
-4. Restart the server. Verify provider readiness via `/health`, confirming `key_present: true` and `reachable: true`. *(Always check provider model names and pricing before querying, as catalog availability changes).*
-
-### d. Data Privacy Notice
-- In `api` mode, the user's prompt and retrieved review snippets are transmitted to the external API provider.
-- In `none` and `ollama` modes, **zero data leaves your local machine**.
-
-### e. Troubleshooting & Fallback
-- If an API key is missing, invalid (HTTP 401/403), timed out, or rate-limited, the agent **automatically catches the error, redacts any error traces, and gracefully falls back to deterministic template answers**.
-- To manually revert to offline mode at any point, set `LLM_PROVIDER=none`.
-
-### f. Security Best Practices
-- Never commit `.env` to Git. (The `.gitignore` strictly ignores `.env` and `.env.*`).
-- If an API key is accidentally exposed, immediately revoke it in the provider console and generate a replacement.
-
----
-
-## 8. Chat UI Behaviour & Guardrails
-
-The conversational interface implements strict read-only analytical guardrails:
-- **Response Labeling:** Every answer displays whether it was generated by a language model (`"language model: <name>"`) or generated deterministically (`"template answer (answered without a language model)"`).
-- **Evidence Citation:** Answers cite specific Review IDs (e.g., `Review #1042`) linking directly to source text.
-- **Tool Whitelist:** The agent can only invoke 4 read-only tools: `search_reviews`, `get_review_kpi`, `predict_sentiment`, and `explain_result`. The model cannot write SQL, execute shell commands, or perform mutations.
-- **Untrusted Context Isolation:** Retrieved review text is passed in `<untrusted_review_context>` XML blocks; embedded injection instructions inside customer reviews are ignored.
-- **Strict Number Grounding:** Every numerical metric presented in an answer must strictly match an approved tool output.
-
----
-
-## 9. How to Verify (The 5 Verification Commands)
-
-Run these five commands locally to independently verify all system invariants:
+Independent reproduction is verified through deterministic test commands:
 
 ```bash
-# 1. Full Guardrail & Agent Test Suite (42 test cases)
+# 1. Automated Test Suite (42 tests: 32 guardrail tests + 10 prototype verification tests)
 pytest -v tests/test_agent.py
 
-# 2. Strict Export & Independent Metric Recomputation (34 checks)
+# 2. Strict Export Integrity & Recomputation Checks (34 independent checks)
 python scripts/verify_export.py
 
-# 3. AST Literal Checker (verifies 0 hardcoded metric literals in src/)
+# 3. Frontend AST Literal Linter (enforces 0 hardcoded metrics in src/)
 npm run check:literals
 
-# 4. Vite Production Build
+# 4. Production Web Bundle Build
 npm run build
-
-# 5. Git Repository Size Check (verifies 0 files > 50 MB)
-python scripts/check_repo_size.py
 ```
 
 ---
 
-## 10. For Reviewers
+## 7. Conversational Agent & Security Perimeter
 
-- **Evidence Tables & Data Contracts:** All baseline metrics, confusion matrices, error taxonomies, and multi-domain test results are tracked in versioned JSON data contracts in `public/data/` and documented in `reports/`.
-- **Independent vs. Self-Consistency Verification:**  
-  - *Independent checks* in `scripts/verify_export.py` re-derive metrics directly from raw per-row test predictions (`test_predictions_per_row.csv`) and length slices.  
-  - *Self-consistency checks* verify that confusion matrices, platform sums, and error taxonomies sum symmetrically to total dataset counts ($n = 72,846$ and $N = 453,878$).
-- **Reviewer Notice:** *Nothing in this repository is approved for operational use until reviewed and validated by the project mentor.*
+The AI Review Analyst (`src/agent/`) implements defense-in-depth security policies:
+- **Default Offline Operation:** With `LLM_PROVIDER=none` in `.env`, the agent generates deterministic responses using local calculations without any external network traffic or API keys.
+- **Provider Adapters:** Supports local offline LLMs via [Ollama](https://ollama.ai) (`LLM_PROVIDER=ollama`) or cloud providers (`LLM_PROVIDER=api`).
+- **Citation Requirement:** Every analytical claim must cite specific indexed review IDs.
+- **Prompt Injection Defense:** Input prompts attempting SQL injection (`DROP TABLE`), instruction overrides (`ignore previous instructions`), or secret exfiltration are intercepted with HTTP 403 Forbidden.
